@@ -4,6 +4,8 @@ const config = require("config");
 
 const app = express();
 
+app.use(express.json());
+
 // DB Config
 const db = config.get("mongoURI");
 
@@ -14,6 +16,9 @@ mongoose
         console.log("MongoDB Connected");
     })
     .catch(err => console.log(err));
+
+// Use Routes
+app.use("/api/posts", require("./routes/api/posts.js"));
 
 const port = process.env.PORT || 5000;
 
