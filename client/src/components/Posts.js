@@ -13,6 +13,7 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
+                    <button className="btn">Read more</button>
                 </div>
                 <div className="post">
                     <img src="/images/food3.jpg" alt="" />
@@ -23,6 +24,7 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
+                    <button className="btn">Read more</button>
                 </div>
                 <div className="post">
                     <img src="/images/food4.jpg" alt="" />
@@ -33,6 +35,7 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
+                    <button className="btn">Read more</button>
                 </div>
                 <div className="post">
                     <img src="/images/food5.jpg" alt="" />
@@ -43,6 +46,7 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
+                    <button className="btn">Read more</button>
                 </div>
             </div>
         );

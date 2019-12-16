@@ -20,6 +20,41 @@
     color: $primary-color;
 }
 
+// Buttons
+.btn {
+    display: inline-block;
+    background: $light-color;
+    color: #333;
+    padding: 0.4rem 1.3rem;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.3s ease-in;
+    border-radius: 20px;
+
+    &.btn-light {
+        @include set-background($primary-color);
+
+        &:hover {
+            background: lighten($primary-color, 5%);
+        }
+    }
+
+    &.btn-dark {
+        @include set-background($dark-color);
+
+        &:hover {
+            background: lighten($dark-color, 5%);
+        }
+    }
+
+    &:hover {
+        background: lighten($dark-color, 20%);
+        color: #fff;
+    }
+}
+
 .dark-overlay {
     height: 100%;
     width: 100%;
