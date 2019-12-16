@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+// Components
+import Comments from "./Comments";
+
 class Post extends Component {
     render() {
         return (
@@ -30,6 +33,9 @@ class Post extends Component {
                     <div className="image">
                         <img src="/images/food6.jpg" alt="" />
                     </div>
+                </div>
+                <div className="">
+                    <Comments />
                 </div>
             </div>
         );
