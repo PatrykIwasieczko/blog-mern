@@ -1,34 +1,41 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const AppNavbar = () => {
     return (
         <nav className="navbar">
             <ul>
                 <li>
-                    <a href="#">Posts</a>
+                    <NavLink to="/">
+                        <a>Posts</a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a href="#">Posts</a>
+                    <NavLink to="/">
+                        <a>Posts</a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a href="#">Posts</a>
+                    <NavLink to="/">
+                        <a>Posts</a>
+                    </NavLink>
                 </li>
             </ul>
             <ul>
                 <li>
-                    <a href="#">
+                    <NavLink to="/">
                         <i className="fab fa-facebook fa-2x"></i>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a href="#">
+                    <NavLink to="/">
                         <i className="fab fa-instagram fa-2x"></i>
-                    </a>
+                    </NavLink>
                 </li>
                 <li>
-                    <a href="#">
+                    <NavLink to="/">
                         <i className="fab fa-linkedin fa-2x"></i>
-                    </a>
+                    </NavLink>
                 </li>
             </ul>
         </nav>
