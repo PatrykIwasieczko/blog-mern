@@ -5,8 +5,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 // Components
 import AppNavbar from "./components/AppNavbar";
 import Landing from "./components/Landing";
-import Posts from "./components/Posts";
 import Post from "./components/Post";
+import MainPage from "./components/MainPage";
 
 function App() {
     return (
@@ -14,7 +14,7 @@ function App() {
             <AppNavbar />
             <Landing />
             <Switch>
-                <Route exact path="/" component={Posts} />
+                <Route exact path="/" component={MainPage} />
                 <Route path="/post" component={Post} />
                 <Redirect to="/" />
             </Switch>

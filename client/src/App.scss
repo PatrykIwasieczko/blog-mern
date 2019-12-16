@@ -79,6 +79,7 @@ a {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+    padding-bottom: 2rem;
 
     .post {
         display: flex;
@@ -95,6 +96,35 @@ a {
 
         .btn {
             margin-bottom: 1rem;
+        }
+    }
+}
+
+.post {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 6rem;
+
+    .image {
+        img {
+            width: 100%;
+        }
+    }
+}
+
+.welcome {
+    background-color: lighten($dark-color, 70%);
+    h1 {
+        text-align: center;
+    }
+
+    .inner {
+        display: grid;
+        grid-gap: 8rem;
+        grid-template-columns: 1fr 1fr;
+
+        img {
+            width: 100%;
         }
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { NavLink } from "react-router-dom";
 
 class Posts extends Component {
     render() {
@@ -13,7 +14,9 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
-                    <button className="btn">Read more</button>
+                    <NavLink to="/post">
+                        <button className="btn">Read more</button>
+                    </NavLink>
                 </div>
                 <div className="post">
                     <img src="/images/food3.jpg" alt="" />
@@ -24,7 +27,9 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
-                    <button className="btn">Read more</button>
+                    <NavLink to="/post">
+                        <button className="btn">Read more</button>
+                    </NavLink>
                 </div>
                 <div className="post">
                     <img src="/images/food4.jpg" alt="" />
@@ -35,7 +40,9 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
-                    <button className="btn">Read more</button>
+                    <NavLink to="/post">
+                        <button className="btn">Read more</button>
+                    </NavLink>
                 </div>
                 <div className="post">
                     <img src="/images/food5.jpg" alt="" />
@@ -46,7 +53,9 @@ class Posts extends Component {
                         dolores eaque doloribus atque! Distinctio doloremque
                         eveniet culpa dignissimos necessitatibus?
                     </p>
-                    <button className="btn">Read more</button>
+                    <NavLink to="/post">
+                        <button className="btn">Read more</button>
+                    </NavLink>
                 </div>
             </div>
         );
