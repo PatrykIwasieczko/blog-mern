@@ -16,13 +16,19 @@ const AppNavbar = () => {
             </ul>
             <ul>
                 <li>
-                    <a href="#">Posts</a>
+                    <a href="#">
+                        <i className="fab fa-facebook fa-2x"></i>
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Developers</a>
+                    <a href="#">
+                        <i className="fab fa-instagram fa-2x"></i>
+                    </a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="#">
+                        <i className="fab fa-linkedin fa-2x"></i>
+                    </a>
                 </li>
             </ul>
         </nav>
