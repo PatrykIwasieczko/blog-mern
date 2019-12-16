@@ -162,3 +162,22 @@ a {
         }
     }
 }
+
+.footer {
+    background-color: $dark-color;
+    opacity: 0.9;
+    margin-top: 0;
+    .contact {
+        width: 70vw;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 2rem;
+    }
+    .copyright {
+        text-align: center;
+        a {
+            color: $primary-color;
+        }
+    }
+}

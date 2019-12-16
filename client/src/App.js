@@ -7,6 +7,7 @@ import AppNavbar from "./components/AppNavbar";
 import Landing from "./components/Landing";
 import Post from "./components/Post";
 import MainPage from "./components/MainPage";
+import Footer from "./components/Footer";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/post" component={Post} />
                 <Redirect to="/" />
             </Switch>
+            <Footer />
         </div>
     );
 }
