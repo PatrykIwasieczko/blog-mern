@@ -3,14 +3,14 @@ import "./App.scss";
 
 // Components
 import AppNavbar from "./components/AppNavbar";
+import Landing from "./components/Landing";
 
 function App() {
     return (
         <div>
             <AppNavbar />
-            <div className="container">
-                <h1 className="content">Hello world</h1>
-            </div>
+
+            <Landing />
         </div>
     );
 }
