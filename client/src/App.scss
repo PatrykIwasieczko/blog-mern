@@ -1,5 +1,59 @@
+$primary-color: #17a2b8;
+$dark-color: #343a40;
+$light-color: #f4f4f4;
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    font-size: 1rem;
+    line-height: 2.5;
+    color: $primary-color;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 2rem;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    top: 0;
+    opacity: 0.9;
+    border-bottom: 1px solid $primary-color;
+    background-color: $dark-color;
+    height: 4rem;
+
+    ul {
+        display: flex;
+
+        a {
+            color: #fff;
+            padding: 0.45rem;
+            margin: 0 0.25rem;
+
+            &:hover {
+                color: $primary-color;
+            }
+        }
+    }
+}
+
+.container {
+    width: 80vw;
+    margin: auto;
+    margin-top: 5rem;
 }
