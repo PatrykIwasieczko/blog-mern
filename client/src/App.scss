@@ -163,6 +163,22 @@ a {
     }
 }
 
+.comments {
+    .comment {
+        padding-bottom: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid $primary-color;
+
+        p {
+            font-size: 0.9rem;
+        }
+
+        &:last-child {
+            border: none;
+        }
+    }
+}
+
 .footer {
     background-color: $dark-color;
     opacity: 0.9;
