@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 // Components
-import Comments from "./Comments";
+import CommentForm from "./CommentForm";
 
 class Post extends Component {
     render() {
@@ -35,7 +35,7 @@ class Post extends Component {
                     </div>
                 </div>
                 <div className="">
-                    <Comments />
+                    <CommentForm />
                 </div>
             </div>
         );

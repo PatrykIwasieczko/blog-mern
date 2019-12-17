@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-class Comments extends Component {
+class CommentForm extends Component {
     render() {
         return (
-            <div className="container comments">
+            <div className="container comment-form">
                 <h1>Leave a comment</h1>
                 <form className="form">
                     <p>Leave a comment</p>
@@ -19,4 +19,4 @@ class Comments extends Component {
     }
 }
 
-export default Comments;
+export default CommentForm;
