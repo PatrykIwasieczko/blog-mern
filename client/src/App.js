@@ -8,6 +8,7 @@ import Landing from "./components/Landing";
 import Post from "./components/Post";
 import MainPage from "./components/MainPage";
 import Footer from "./components/Footer";
+import TopArrow from "./components/TopArrow";
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                 <Redirect to="/" />
             </Switch>
             <Footer />
+            <TopArrow />
         </div>
     );
 }
