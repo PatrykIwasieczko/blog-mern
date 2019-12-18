@@ -3,12 +3,12 @@ import "./App.scss";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // Components
-import AppNavbar from "./components/AppNavbar";
-import Landing from "./components/Landing";
-import Post from "./components/Post";
-import MainPage from "./components/MainPage";
-import Footer from "./components/Footer";
-import TopArrow from "./components/TopArrow";
+import AppNavbar from "./components/Layout/AppNavbar";
+import Landing from "./components/Layout/Landing";
+import FullPost from "./components/Posts/FullPost";
+import HomePage from "./components/HomePage/HomePage";
+import Footer from "./components/Layout/Footer";
+import TopArrow from "./components/Layout/TopArrow";
 
 function App() {
     return (
@@ -16,8 +16,8 @@ function App() {
             <AppNavbar />
             <Landing />
             <Switch>
-                <Route exact path="/" component={MainPage} />
-                <Route path="/post" component={Post} />
+                <Route exact path="/" component={HomePage} />
+                <Route path="/post" component={FullPost} />
                 <Redirect to="/" />
             </Switch>
             <Footer />

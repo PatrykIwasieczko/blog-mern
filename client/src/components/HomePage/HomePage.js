@@ -2,9 +2,9 @@ import React from "react";
 
 // Components
 import Welcome from "./Welcome";
-import Posts from "./Posts";
+import Posts from "../Posts/Posts";
 
-const MainPage = () => {
+const HomePage = () => {
     return (
         <>
             <Posts />
@@ -13,4 +13,4 @@ const MainPage = () => {
     );
 };
 
-export default MainPage;
+export default HomePage;

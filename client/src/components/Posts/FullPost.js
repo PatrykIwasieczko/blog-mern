@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 
 // Components
-import CommentForm from "./CommentForm";
-import Comments from "./Comments";
+import CommentForm from "./Comments/CommentForm";
+import Comments from "./Comments/Comments";
 
-class Post extends Component {
+class FullPost extends Component {
     render() {
         return (
             <div className="container">
@@ -44,4 +44,4 @@ class Post extends Component {
     }
 }
 
-export default Post;
+export default FullPost;
