@@ -7,34 +7,45 @@ const Comment = require("../../models/Comment.js");
 // @route   GET api/posts
 // @desc    Get all posts
 // @access  Public
-router.get("/", (req, res) => {
-    Post.find().then(posts => res.json(posts));
+router.get("/", async (req, res) => {
+    try {
+        const posts = await Post.find();
+        return res.json(posts);
+    } catch (err) {
+        return res.status(500).json({ msg: err.message });
+    }
 });
 
 // @route   POST api/posts
 // @desc    Post the post
 // @access  Public
-router.post("/", (req, res) => {
-    const newPost = new Post({
-        title: req.body.title,
-        body: req.body.body,
-        author: req.body.author
-    });
-
-    newPost.save().then(item => res.json(item));
+router.post("/", async (req, res) => {
+    try {
+        const newPost = new Post({
+            title: req.body.title,
+            body: req.body.body,
+            author: req.body.author
+        });
+        await newPost.save();
+        return res.json(newPost);
+    } catch (err) {
+        return res.status(400).json({ msg: err.message });
+    }
 });
 
 // @route   DELETE api/posts/id
 // @desc    Delete a post
 // @access  Public
-router.post("/:id", (req, res) => {
-    Post.findById(req.params.id)
-        .then(post => {
-            post.remove().then(() =>
-                res.json({ msg: "Post successfully removed" })
-            );
-        })
-        .catch(err => res.status(404).json({ msg: "Post doesn't exist" }));
+router.delete("/:id", async (req, res) => {
+    // Finish refactoring
+    try {
+        const post = await Post.findById(req.params.id);
+        await post.remove();
+
+        return res.json({ msg: "Post successfully removed" });
+    } catch (err) {
+        return res.status(404).json({ msg: err.message });
+    }
 });
 
 // @route   POST api/post/:id/comment
@@ -55,7 +66,7 @@ router.post("/:id/comment", async (req, res) => {
         await post.save();
         return res.json(comment);
     } catch (err) {
-        return res.status(500).json({ msg: "Something went wrong" });
+        return res.status(500).json({ msg: err.message });
     }
 });
 
