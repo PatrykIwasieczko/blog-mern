@@ -49,7 +49,7 @@ class Posts extends Component {
             <div className="posts container">
                 {this.state.posts.map((post, index) => (
                     <div key={index} className="post">
-                        <img src="/images/food5.jpg" alt="" />
+                        <img src="/images/food4.jpg" alt="" />
                         <h2>{post.title}</h2>
                         <p className="my-1">{post.body}</p>
                         <NavLink to="/post">

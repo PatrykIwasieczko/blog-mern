@@ -16,6 +16,18 @@ router.get("/", async (req, res) => {
     }
 });
 
+// @route   GET api/posts/id
+// @desc    Get single post
+// @access  Public
+router.get("/:id", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        return res.json(post);
+    } catch (err) {
+        return res.status(404).json({ msg: err.message });
+    }
+});
+
 // @route   POST api/posts
 // @desc    Post the post
 // @access  Public
