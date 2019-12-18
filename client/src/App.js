@@ -9,6 +9,7 @@ import FullPost from "./components/Posts/FullPost";
 import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Layout/Footer";
 import TopArrow from "./components/Layout/TopArrow";
+import AddPost from "./components/Posts/AddPost";
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/post" component={FullPost} />
+                <Route path="/addpost" component={AddPost} />
                 <Redirect to="/" />
             </Switch>
             <Footer />

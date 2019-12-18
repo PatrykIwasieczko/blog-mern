@@ -6,7 +6,7 @@ const AppNavbar = () => {
         <nav className="navbar">
             <ul>
                 <li>
-                    <NavLink to="/">Posts</NavLink>
+                    <NavLink to="/addpost">Add Post</NavLink>
                 </li>
                 <li>
                     <NavLink to="/">Posts</NavLink>
