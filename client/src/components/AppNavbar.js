@@ -6,19 +6,13 @@ const AppNavbar = () => {
         <nav className="navbar">
             <ul>
                 <li>
-                    <NavLink to="/">
-                        <a>Posts</a>
-                    </NavLink>
+                    <NavLink to="/">Posts</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/">
-                        <a>Posts</a>
-                    </NavLink>
+                    <NavLink to="/">Posts</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/">
-                        <a>Posts</a>
-                    </NavLink>
+                    <NavLink to="/">Posts</NavLink>
                 </li>
             </ul>
             <ul>

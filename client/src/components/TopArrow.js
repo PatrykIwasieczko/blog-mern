@@ -9,7 +9,9 @@ const TopArrow = () => {
         });
     };
 
-    return <i onClick={scrollTop} class="fas fa-arrow-up fa-2x top-arrow"></i>;
+    return (
+        <i onClick={scrollTop} className="fas fa-arrow-up fa-2x top-arrow"></i>
+    );
 };
 
 export default TopArrow;
