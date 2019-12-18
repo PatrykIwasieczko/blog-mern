@@ -5,7 +5,7 @@ class AddPost extends Component {
     state = {
         authors: ["First author", "Second author"],
         post: {
-            author: "",
+            author: "First author",
             body: "",
             title: ""
         }
