@@ -2,61 +2,51 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 class Posts extends Component {
+    state = {
+        posts: [
+            {
+                title: "first",
+                body:
+                    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fugiat.",
+                author: "Patryk",
+                img: "/images/food1.jpg"
+            },
+            {
+                title: "second",
+                body:
+                    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fugiat.",
+                author: "Patryk",
+                img: "/images/food2.jpg"
+            },
+            {
+                title: "third",
+                body:
+                    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fugiat.",
+                author: "Patryk",
+                img: "/images/food3.jpg"
+            },
+            {
+                title: "fourth",
+                body:
+                    "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolor, fugiat.",
+                author: "Patryk",
+                img: "/images/food4.jpg"
+            }
+        ]
+    };
     render() {
         return (
             <div className="posts container">
-                <div className="post">
-                    <img src="/images/food1.jpg" alt="" />
-                    <h2>Title</h2>
-                    <p className="my-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Cupiditate architecto deleniti nisi sed, provident
-                        dolores eaque doloribus atque! Distinctio doloremque
-                        eveniet culpa dignissimos necessitatibus?
-                    </p>
-                    <NavLink to="/post">
-                        <button className="btn">Read more</button>
-                    </NavLink>
-                </div>
-                <div className="post">
-                    <img src="/images/food3.jpg" alt="" />
-                    <h2>Title</h2>
-                    <p className="my-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Cupiditate architecto deleniti nisi sed, provident
-                        dolores eaque doloribus atque! Distinctio doloremque
-                        eveniet culpa dignissimos necessitatibus?
-                    </p>
-                    <NavLink to="/post">
-                        <button className="btn">Read more</button>
-                    </NavLink>
-                </div>
-                <div className="post">
-                    <img src="/images/food4.jpg" alt="" />
-                    <h2>Title</h2>
-                    <p className="my-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Cupiditate architecto deleniti nisi sed, provident
-                        dolores eaque doloribus atque! Distinctio doloremque
-                        eveniet culpa dignissimos necessitatibus?
-                    </p>
-                    <NavLink to="/post">
-                        <button className="btn">Read more</button>
-                    </NavLink>
-                </div>
-                <div className="post">
-                    <img src="/images/food5.jpg" alt="" />
-                    <h2>Title</h2>
-                    <p className="my-1">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Cupiditate architecto deleniti nisi sed, provident
-                        dolores eaque doloribus atque! Distinctio doloremque
-                        eveniet culpa dignissimos necessitatibus?
-                    </p>
-                    <NavLink to="/post">
-                        <button className="btn">Read more</button>
-                    </NavLink>
-                </div>
+                {this.state.posts.map((post, index) => (
+                    <div key={index} className="post">
+                        <img src={post.img} alt="" />
+                        <h2>{post.title}</h2>
+                        <p className="my-1">{post.body}</p>
+                        <NavLink to="/post">
+                            <button className="btn">Read more</button>
+                        </NavLink>
+                    </div>
+                ))}
             </div>
         );
     }
