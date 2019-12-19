@@ -4,6 +4,7 @@ import axios from "axios";
 // Components
 import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
+import Spinner from "../UI/Spinner";
 
 class FullPost extends Component {
     state = {
@@ -11,19 +12,33 @@ class FullPost extends Component {
             author: "",
             title: "",
             body: ""
-        }
+        },
+        loading: false
     };
 
     componentDidMount() {
+        this.setState({ loading: true });
         const postId = this.props.match.params.id;
-        axios.get(`http://localhost:5000/api/posts/${postId}`).then(post => {
-            this.setState({ post: post.data });
-        });
+        axios
+            .get(`http://localhost:5000/api/posts/${postId}`)
+            .then(post => {
+                this.setState({ post: post.data });
+            })
+            .then(() => {
+                this.setState({ loading: false });
+            })
+            .catch(err => {
+                console.log(err);
+                this.setState({ loading: false });
+            });
     }
 
     render() {
         const { title, author, body } = this.state.post;
-        return (
+
+        let fullPost = this.state.loading ? (
+            <Spinner />
+        ) : (
             <div className="container">
                 <div className="post">
                     <div className="text">
@@ -41,6 +56,8 @@ class FullPost extends Component {
                 </div>
             </div>
         );
+
+        return <>{fullPost}</>;
     }
 }
 
