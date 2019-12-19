@@ -22,15 +22,14 @@ class FullPost extends Component {
     }
 
     render() {
+        const { title, author, body } = this.state.post;
         return (
             <div className="container">
                 <div className="post">
                     <div className="text">
-                        <h1>{this.state.post.title}</h1>
-                        <p className="lead">
-                            Made by: {this.state.post.author}
-                        </p>
-                        <p>{this.state.post.body}</p>
+                        <h1>{title}</h1>
+                        <p className="lead">Made by: {author}</p>
+                        <p>{body}</p>
                     </div>
                     <div className="image">
                         <img src="/images/food6.jpg" alt="" />
