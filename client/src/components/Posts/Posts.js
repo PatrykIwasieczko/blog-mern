@@ -42,7 +42,9 @@ class Posts extends Component {
                         <img src="/images/food4.jpg" alt="" />
                         <h2>{post.title}</h2>
                         <p>{moment(post.date).fromNow()}</p>
-                        <p className="my-1">{post.body}</p>
+                        <p className="my-1">
+                            {post.body.substring(0, 120) + "..."}
+                        </p>
                         <NavLink to={`/${post._id}`}>
                             <button className="btn">Read more</button>
                         </NavLink>
