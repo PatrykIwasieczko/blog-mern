@@ -1,35 +1,36 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 // Components
 import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
 
 class FullPost extends Component {
+    state = {
+        post: {
+            author: "",
+            title: "",
+            body: ""
+        }
+    };
+
+    componentDidMount() {
+        const postId = this.props.match.params.id;
+        axios.get(`http://localhost:5000/api/posts/${postId}`).then(post => {
+            this.setState({ post: post.data });
+        });
+    }
+
     render() {
         return (
             <div className="container">
                 <div className="post">
                     <div className="text">
-                        <h1>Post title</h1>
-                        <p className="lead">Made by: author</p>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Harum maxime distinctio ducimus maiores vitae
-                            asperiores, quod laboriosam totam reprehenderit illo
-                            cumque delectus sunt ex fugiat illum eaque
-                            molestias! Velit assumenda voluptatem porro quisquam
-                            illo, perferendis adipisci iste, repellat sunt
-                            praesentium distinctio mollitia quaerat autem
-                            laudantium voluptatum reiciendis sed. Iure ab
-                            tempore ut consequuntur debitis vero cupiditate
-                            consectetur sint? Facilis, magni, delectus
-                            consequuntur quibusdam vitae consectetur aliquid
-                            eveniet, corporis sapiente nemo eaque in autem error
-                            odit nihil ab unde quidem. Dolorem officia est
-                            cumque deserunt eveniet a, expedita placeat ipsa
-                            aperiam molestias accusamus aut ipsam beatae nihil
-                            quod doloremque alias sed.
+                        <h1>{this.state.post.title}</h1>
+                        <p className="lead">
+                            Made by: {this.state.post.author}
                         </p>
+                        <p>{this.state.post.body}</p>
                     </div>
                     <div className="image">
                         <img src="/images/food6.jpg" alt="" />

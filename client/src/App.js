@@ -18,7 +18,7 @@ function App() {
             <Landing />
             <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/post" component={FullPost} />
+                <Route path="/:id" component={FullPost} />
                 <Route path="/addpost" component={AddPost} />
                 <Redirect to="/" />
             </Switch>

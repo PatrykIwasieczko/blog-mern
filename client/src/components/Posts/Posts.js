@@ -47,12 +47,12 @@ class Posts extends Component {
     render() {
         return (
             <div className="posts container">
-                {this.state.posts.map((post, index) => (
-                    <div key={index} className="post">
+                {this.state.posts.map(post => (
+                    <div key={post._id} className="post" postid={post._id}>
                         <img src="/images/food4.jpg" alt="" />
                         <h2>{post.title}</h2>
                         <p className="my-1">{post.body}</p>
-                        <NavLink to="/post">
+                        <NavLink to={`/${post._id}`}>
                             <button className="btn">Read more</button>
                         </NavLink>
                     </div>
