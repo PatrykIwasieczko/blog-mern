@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
-import dayjs from "dayjs";
-import localeES from "dayjs/locale/pl";
+import moment from "moment";
+import "moment/locale/pl";
 
 // Components
 import Spinner from "../UI/Spinner";
@@ -24,7 +24,7 @@ class Posts extends Component {
         this.setState({ loading: false });
     }
     render() {
-        dayjs.locale("pl");
+        moment.locale("pl");
         let postSpinner = this.state.loading ? (
             <>
                 <Spinner />
@@ -41,7 +41,7 @@ class Posts extends Component {
                     <div key={post._id} className="post" postid={post._id}>
                         <img src="/images/food4.jpg" alt="" />
                         <h2>{post.title}</h2>
-                        <p>{dayjs(post.date).format("HH:mm, DD MMMM YYYY")}</p>
+                        <p>{moment(post.date).fromNow()}</p>
                         <p className="my-1">{post.body}</p>
                         <NavLink to={`/${post._id}`}>
                             <button className="btn">Read more</button>

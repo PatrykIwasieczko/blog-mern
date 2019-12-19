@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+import moment from "moment";
+import "moment/locale/pl";
 
 // Components
 import CommentForm from "./Comments/CommentForm";
@@ -34,7 +36,8 @@ class FullPost extends Component {
     }
 
     render() {
-        const { title, author, body } = this.state.post;
+        moment.locale("pl");
+        const { title, author, body, date } = this.state.post;
 
         let fullPost = this.state.loading ? (
             <Spinner />
@@ -44,6 +47,7 @@ class FullPost extends Component {
                     <div className="text">
                         <h1>{title}</h1>
                         <p className="lead">Made by: {author}</p>
+                        <p>{moment(date).fromNow()}</p>
                         <p>{body}</p>
                     </div>
                     <div className="image">
