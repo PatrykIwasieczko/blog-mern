@@ -68,8 +68,7 @@ router.post("/:id/comment", async (req, res) => {
         const post = await Post.findById(req.params.id);
         const comment = new Comment({
             user: req.body.user,
-            body: req.body.body,
-            date: new Date().toISOString()
+            body: req.body.body
         });
 
         await comment.save();
