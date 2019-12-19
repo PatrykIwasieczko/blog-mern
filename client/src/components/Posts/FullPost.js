@@ -37,7 +37,7 @@ class FullPost extends Component {
 
     render() {
         moment.locale("pl");
-        const { title, author, body, date } = this.state.post;
+        const { title, author, body, date, comments } = this.state.post;
 
         let fullPost = this.state.loading ? (
             <Spinner />
@@ -56,7 +56,7 @@ class FullPost extends Component {
                 </div>
                 <div className="">
                     <CommentForm />
-                    <Comments />
+                    <Comments comments={comments} />
                 </div>
             </div>
         );

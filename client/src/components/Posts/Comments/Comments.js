@@ -1,49 +1,23 @@
 import React, { Component } from "react";
+import moment from "moment";
+import "moment/locale/pl";
 
 class Comments extends Component {
     render() {
         return (
             <div className="container comments">
-                <div className="comment">
-                    <h4>Name</h4>
-                    <p>Added x days ago</p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi sint quae asperiores nesciunt! Dicta tempore in
-                        accusantium eos assumenda laborum nostrum eveniet
-                        facilis dolore, sint itaque fuga alias nesciunt quo!
-                    </p>
-                </div>
-                <div className="comment">
-                    <h4>Name</h4>
-                    <p>Added x days ago</p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi sint quae asperiores nesciunt! Dicta tempore in
-                        accusantium eos assumenda laborum nostrum eveniet
-                        facilis dolore, sint itaque fuga alias nesciunt quo!
-                    </p>
-                </div>
-                <div className="comment">
-                    <h4>Name</h4>
-                    <p>Added x days ago</p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi sint quae asperiores nesciunt! Dicta tempore in
-                        accusantium eos assumenda laborum nostrum eveniet
-                        facilis dolore, sint itaque fuga alias nesciunt quo!
-                    </p>
-                </div>
-                <div className="comment">
-                    <h4>Name</h4>
-                    <p>Added x days ago</p>
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi sint quae asperiores nesciunt! Dicta tempore in
-                        accusantium eos assumenda laborum nostrum eveniet
-                        facilis dolore, sint itaque fuga alias nesciunt quo!
-                    </p>
-                </div>
+                {this.props.comments
+                    ? this.props.comments
+                          .sort((a, b) => a.date - b.date)
+                          .reverse()
+                          .map((comment, index) => (
+                              <div key={index} className="comment">
+                                  <h4>{comment.user}</h4>
+                                  <p>{moment(comment.date).fromNow()}</p>
+                                  <p>{comment.body}</p>
+                              </div>
+                          ))
+                    : null}
             </div>
         );
     }
