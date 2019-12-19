@@ -9,7 +9,7 @@ const Comment = require("../../models/Comment.js");
 // @access  Public
 router.get("/", async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().sort({ date: -1 });
         return res.json(posts);
     } catch (err) {
         return res.status(500).json({ msg: err.message });
