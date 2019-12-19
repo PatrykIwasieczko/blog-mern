@@ -13,7 +13,8 @@ class FullPost extends Component {
         post: {
             author: "",
             title: "",
-            body: ""
+            body: "",
+            _id: ""
         },
         loading: false
     };
@@ -55,7 +56,7 @@ class FullPost extends Component {
                     </div>
                 </div>
                 <div className="">
-                    <CommentForm />
+                    <CommentForm postId={this.state.post._id} />
                     <Comments comments={comments} />
                 </div>
             </div>
