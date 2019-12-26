@@ -10,6 +10,7 @@ import HomePage from "./components/HomePage/HomePage";
 import Footer from "./components/Layout/Footer";
 import TopArrow from "./components/Layout/TopArrow";
 import AddPost from "./components/Posts/AddPost";
+import AllPosts from "./components/Posts/AllPosts";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/addpost" component={AddPost} />
+                <Route path="/allposts" component={AllPosts} />
                 <Route path="/:id" component={FullPost} />
                 <Redirect to="/" />
             </Switch>
