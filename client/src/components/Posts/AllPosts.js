@@ -14,6 +14,10 @@ class AllPosts extends Component {
     };
 
     componentDidMount() {
+        this.loadPosts();
+    }
+
+    loadPosts = () => {
         this.setState({ loading: true });
         axios
             .get("http://localhost:5000/api/posts")
@@ -22,7 +26,7 @@ class AllPosts extends Component {
             })
             .catch(err => console.error(err));
         this.setState({ loading: false });
-    }
+    };
     render() {
         moment.locale("pl");
         let postSpinner = this.state.loading ? (
@@ -35,22 +39,29 @@ class AllPosts extends Component {
         ) : null;
 
         return (
-            <div className="posts container">
-                {postSpinner}
-                {this.state.posts.map(post => (
-                    <div key={post._id} className="post" postid={post._id}>
-                        <img src="/images/food4.jpg" alt="" />
-                        <h2>{post.title}</h2>
-                        <p>{moment(post.date).fromNow()}</p>
-                        <p className="my-1">
-                            {post.body.substring(0, 120) + "..."}
-                        </p>
-                        <NavLink to={`/${post._id}`}>
-                            <button className="btn">Read more</button>
-                        </NavLink>
-                    </div>
-                ))}
-            </div>
+            <>
+                <div className="posts container">
+                    {postSpinner}
+                    {this.state.posts.map(post => (
+                        <div key={post._id} className="post" postid={post._id}>
+                            <img src="/images/food4.jpg" alt="" />
+                            <h2>{post.title}</h2>
+                            <p>{moment(post.date).fromNow()}</p>
+                            <p className="my-1">
+                                {post.body.substring(0, 120) + "..."}
+                            </p>
+                            <NavLink to={`/${post._id}`}>
+                                <button className="btn">Read more</button>
+                            </NavLink>
+                        </div>
+                    ))}
+                </div>
+                <div className="show-more-btn my-2">
+                    <button onClick={this.loadPosts} className="btn">
+                        Read more
+                    </button>
+                </div>
+            </>
         );
     }
 }
