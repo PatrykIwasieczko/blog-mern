@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
         const posts = await Post.find().sort({ date: -1 });
         return res.json(posts);
     } catch (err) {
-        return res.status(500).json({ msg: err.message });
+        return res.status(500).json({ msg: "Something went wrong" });
     }
 });
 
@@ -24,7 +24,7 @@ router.get("/:id", async (req, res) => {
         const post = await Post.findById(req.params.id);
         return res.json(post);
     } catch (err) {
-        return res.status(404).json({ msg: err.message });
+        return res.status(404).json({ msg: "Post does not exist" });
     }
 });
 
@@ -32,11 +32,15 @@ router.get("/:id", async (req, res) => {
 // @desc    Post the post
 // @access  Public
 router.post("/", async (req, res) => {
+    const { title, body, author } = req.body;
+    if (!title || !body || !author) {
+        return res.status(400).json({ msg: "Please enter all fields" });
+    }
     try {
         const newPost = new Post({
-            title: req.body.title,
-            body: req.body.body,
-            author: req.body.author
+            title: title,
+            body: body,
+            author: author
         });
         await newPost.save();
         return res.json(newPost);
@@ -49,14 +53,13 @@ router.post("/", async (req, res) => {
 // @desc    Delete a post
 // @access  Public
 router.delete("/:id", async (req, res) => {
-    // Finish refactoring
     try {
         const post = await Post.findById(req.params.id);
         await post.remove();
 
         return res.json({ msg: "Post successfully removed" });
     } catch (err) {
-        return res.status(404).json({ msg: err.message });
+        return res.status(404).json({ msg: "Post does not exist" });
     }
 });
 
