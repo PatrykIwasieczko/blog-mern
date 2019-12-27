@@ -29,10 +29,7 @@ class CommentForm extends Component {
         const postId = this.props.postId;
 
         axios
-            .post(
-                `http://localhost:5000/api/posts/${postId}/comment`,
-                newComment
-            )
+            .post(`/api/posts/${postId}/comment`, newComment)
             .then(() => {
                 this.setState({
                     comment: {

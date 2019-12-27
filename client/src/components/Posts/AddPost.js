@@ -29,7 +29,7 @@ class AddPost extends Component {
             title
         };
         axios
-            .post("http://localhost:5000/api/posts", newPost)
+            .post("/api/posts", newPost)
             .then(() => {
                 this.setState({
                     post: {

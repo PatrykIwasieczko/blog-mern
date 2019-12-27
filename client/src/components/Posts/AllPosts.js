@@ -20,7 +20,7 @@ class AllPosts extends Component {
     loadPosts = () => {
         this.setState({ loading: true });
         axios
-            .get("http://localhost:5000/api/posts")
+            .get("/api/posts")
             .then(res => {
                 this.setState({ posts: res.data, loading: false });
             })

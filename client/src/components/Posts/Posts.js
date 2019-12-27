@@ -16,7 +16,7 @@ class Posts extends Component {
     componentDidMount() {
         this.setState({ loading: true });
         axios
-            .get("http://localhost:5000/api/posts")
+            .get("/api/posts")
             .then(res => {
                 let newestPosts = res.data.slice(0, 4);
                 this.setState({ posts: newestPosts, loading: false });

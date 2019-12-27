@@ -23,7 +23,7 @@ class FullPost extends Component {
         this.setState({ loading: true });
         const postId = this.props.match.params.id;
         axios
-            .get(`http://localhost:5000/api/posts/${postId}`)
+            .get(`/api/posts/${postId}`)
             .then(post => {
                 this.setState({ post: post.data });
             })
