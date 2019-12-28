@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { addPost } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
 
 class AddPost extends Component {
     state = {
@@ -28,23 +29,16 @@ class AddPost extends Component {
             body,
             title
         };
-        axios
-            .post("/api/posts", newPost)
-            .then(() => {
-                this.setState({
-                    post: {
-                        author: "",
-                        body: "",
-                        title: ""
-                    }
-                });
-            })
-            .then(() => {
-                this.props.history.push("/");
-            })
-            .catch(err => {
-                console.log(err);
+        this.props.addPost(newPost, () => {
+            this.setState({
+                post: {
+                    author: "First author",
+                    body: "",
+                    title: ""
+                }
             });
+            this.props.history.push("/");
+        });
     };
 
     render() {
@@ -88,4 +82,4 @@ class AddPost extends Component {
     }
 }
 
-export default AddPost;
+export default connect(null, { addPost })(AddPost);

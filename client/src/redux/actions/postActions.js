@@ -14,6 +14,24 @@ export const getPosts = () => dispatch => {
         .catch(err => console.error(err));
 };
 
+export const addPost = (post, callback) => dispatch => {
+    axios
+        .post("/api/posts", post)
+        .then(res => {
+            dispatch({
+                type: ADD_POST,
+                payload: res.data
+            });
+        })
+        .then(() => {
+            callback();
+        })
+
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const setPostsLoading = () => {
     return {
         type: POSTS_LOADING

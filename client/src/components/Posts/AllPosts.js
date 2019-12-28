@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import axios from "axios";
 import moment from "moment";
 import "moment/locale/pl";
 import { getPosts } from "../../redux/actions/postActions";
