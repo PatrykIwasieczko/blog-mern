@@ -3,33 +3,21 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/pl";
+import { getPosts } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
 
 // Components
 import Spinner from "../UI/Spinner";
 
 class AllPosts extends Component {
-    state = {
-        posts: [],
-        loading: false
-    };
-
     componentDidMount() {
-        this.loadPosts();
+        this.props.getPosts();
     }
 
-    loadPosts = () => {
-        this.setState({ loading: true });
-        axios
-            .get("/api/posts")
-            .then(res => {
-                this.setState({ posts: res.data, loading: false });
-            })
-            .catch(err => console.error(err));
-        this.setState({ loading: false });
-    };
     render() {
+        const { posts } = this.props.post;
         moment.locale("pl");
-        let postSpinner = this.state.loading ? (
+        let postSpinner = this.props.post.loading ? (
             <>
                 <Spinner />
                 <Spinner />
@@ -42,7 +30,7 @@ class AllPosts extends Component {
             <>
                 <div className="posts container">
                     {postSpinner}
-                    {this.state.posts.map(post => (
+                    {posts.map(post => (
                         <div key={post._id} className="post" postid={post._id}>
                             <img src="/images/food4.jpg" alt="" />
                             <h2>{post.title}</h2>
@@ -66,4 +54,8 @@ class AllPosts extends Component {
     }
 }
 
-export default AllPosts;
+const mapStateToProps = state => ({
+    post: state.post
+});
+
+export default connect(mapStateToProps, { getPosts })(AllPosts);

@@ -10,23 +10,8 @@ import { connect } from "react-redux";
 import Spinner from "../UI/Spinner";
 
 class Posts extends Component {
-    // state = {
-    //     posts: [],
-    //     loading: false
-    // };
-
     componentDidMount() {
         this.props.getPosts();
-        console.log(this.props);
-        // this.setState({ loading: true });
-        // axios
-        //     .get("/api/posts")
-        //     .then(res => {
-        //         let newestPosts = res.data.slice(0, 4);
-        //         this.setState({ posts: newestPosts, loading: false });
-        //     })
-        //     .catch(err => console.error(err));
-        // this.setState({ loading: false });
     }
     render() {
         const { posts } = this.props.post;
