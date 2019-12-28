@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import moment from "moment";
 import "moment/locale/pl";
+import { getPost } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
 
 // Components
 import CommentForm from "./Comments/CommentForm";
@@ -20,27 +22,36 @@ class FullPost extends Component {
     };
 
     componentDidMount() {
-        this.setState({ loading: true });
+        // this.setState({ loading: true });
         const postId = this.props.match.params.id;
-        axios
-            .get(`/api/posts/${postId}`)
-            .then(post => {
-                this.setState({ post: post.data });
-            })
-            .then(() => {
-                this.setState({ loading: false });
-            })
-            .catch(err => {
-                console.log(err);
-                this.setState({ loading: false });
-            });
+        this.props.getPost(postId);
+        // axios
+        //     .get(`/api/posts/${postId}`)
+        //     .then(post => {
+        //         this.setState({ post: post.data });
+        //     })
+        //     .then(() => {
+        //         this.setState({ loading: false });
+        //     })
+        //     .catch(err => {
+        //         console.log(err);
+        //         this.setState({ loading: false });
+        //     });
     }
 
     render() {
+        const {
+            title,
+            author,
+            date,
+            body,
+            _id,
+            comments
+        } = this.props.post.post;
         moment.locale("pl");
-        const { title, author, body, date, comments } = this.state.post;
+        // const { title, author, body, date, comments } = this.state.post;
 
-        let fullPost = this.state.loading ? (
+        let fullPost = this.props.loading ? (
             <Spinner />
         ) : (
             <div className="container">
@@ -56,7 +67,7 @@ class FullPost extends Component {
                     </div>
                 </div>
                 <div className="">
-                    <CommentForm postId={this.state.post._id} />
+                    <CommentForm postId={_id} />
                     <Comments comments={comments} />
                 </div>
             </div>
@@ -66,4 +77,8 @@ class FullPost extends Component {
     }
 }
 
-export default FullPost;
+const mapStateToProps = state => ({
+    post: state.post
+});
+
+export default connect(mapStateToProps, { getPost })(FullPost);
