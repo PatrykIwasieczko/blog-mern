@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/pl";
-import { getPosts } from "../../redux/actions/postActions";
+import { getPosts, deletePost } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
 
 // Components
@@ -12,6 +12,11 @@ class Posts extends Component {
     componentDidMount() {
         this.props.getPosts();
     }
+
+    deletePost = postId => {
+        this.props.deletePost(postId);
+    };
+
     render() {
         const { posts } = this.props.post;
         moment.locale("pl");
@@ -39,6 +44,10 @@ class Posts extends Component {
                             <NavLink to={`/${post._id}`}>
                                 <button className="btn">Read more</button>
                             </NavLink>
+                            <i
+                                onClick={this.deletePost.bind(this, post._id)}
+                                className="fas fa-times fa-2x delete-post-icon"
+                            ></i>
                         </div>
                     ))}
                 </div>
@@ -56,4 +65,4 @@ const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default connect(mapStateToProps, { getPosts, deletePost })(Posts);

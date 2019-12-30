@@ -61,6 +61,20 @@ export const addPost = (post, callback) => dispatch => {
         });
 };
 
+export const deletePost = postId => dispatch => {
+    axios
+        .delete(`/api/posts/${postId}`)
+        .then(res => {
+            dispatch({
+                type: DELETE_POST,
+                payload: postId
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const setPostsLoading = () => {
     return {
         type: POSTS_LOADING

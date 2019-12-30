@@ -88,6 +88,7 @@ a {
         justify-content: top;
         text-align: center;
         border: 1px solid $primary-color;
+        position: relative;
 
         p {
             margin-bottom: auto;
@@ -100,6 +101,18 @@ a {
 
         .btn {
             margin: 1rem;
+        }
+
+        .delete-post-icon {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            transition: all 0.5s;
+
+            &:hover {
+                color: $dark-color;
+            }
         }
     }
 }

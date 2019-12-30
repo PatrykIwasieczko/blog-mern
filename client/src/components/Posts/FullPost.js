@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import moment from "moment";
 import "moment/locale/pl";
 import { getPost } from "../../redux/actions/postActions";
