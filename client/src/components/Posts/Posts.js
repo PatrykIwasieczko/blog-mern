@@ -2,19 +2,30 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import "moment/locale/pl";
-import { getPosts, deletePost } from "../../redux/actions/postActions";
+import { getPosts } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
 
 // Components
 import Spinner from "../UI/Spinner";
+import ConfirmDeletePost from "./ConfirmDeletePost";
+import Backdrop from "../Layout/Backdrop";
 
 class Posts extends Component {
+    state = {
+        isOpen: false,
+        deletingId: null
+    };
     componentDidMount() {
         this.props.getPosts();
     }
 
-    deletePost = postId => {
-        this.props.deletePost(postId);
+    modalOpen = post => {
+        // this.props.deletePost(postId);
+        this.setState({ isOpen: true, deletingId: post._id });
+    };
+
+    hideModal = () => {
+        this.setState({ isOpen: false });
     };
 
     render() {
@@ -45,7 +56,7 @@ class Posts extends Component {
                                 <button className="btn">Read more</button>
                             </NavLink>
                             <i
-                                onClick={this.deletePost.bind(this, post._id)}
+                                onClick={this.modalOpen.bind(this, post)}
                                 className="fas fa-times fa-2x delete-post-icon"
                             ></i>
                         </div>
@@ -56,6 +67,14 @@ class Posts extends Component {
                         <button className="btn">Show more posts</button>
                     </NavLink>
                 </div>
+                {this.state.isOpen ? (
+                    <Backdrop show={this.state.isOpen} />
+                ) : null}
+                <ConfirmDeletePost
+                    postId={this.state.deletingId}
+                    hideModal={this.hideModal}
+                    isOpen={this.state.isOpen}
+                />
             </>
         );
     }
@@ -65,4 +84,4 @@ const mapStateToProps = state => ({
     post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts, deletePost })(Posts);
+export default connect(mapStateToProps, { getPosts })(Posts);
