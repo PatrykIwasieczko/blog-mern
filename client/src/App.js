@@ -15,12 +15,14 @@ import Footer from "./components/Layout/Footer";
 import TopArrow from "./components/Layout/TopArrow";
 import AddPost from "./components/Posts/AddPost";
 import AllPosts from "./components/Posts/AllPosts";
+import MobileNavbar from "./components/Layout/MobileNavbar";
 
 function App() {
     return (
         <Provider store={store}>
             <div>
                 <AppNavbar />
+                <MobileNavbar />
                 <Landing />
                 <Switch>
                     <Route exact path="/" component={HomePage} />
