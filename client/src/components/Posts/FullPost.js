@@ -21,21 +21,8 @@ class FullPost extends Component {
     };
 
     componentDidMount() {
-        // this.setState({ loading: true });
         const postId = this.props.match.params.id;
         this.props.getPost(postId);
-        // axios
-        //     .get(`/api/posts/${postId}`)
-        //     .then(post => {
-        //         this.setState({ post: post.data });
-        //     })
-        //     .then(() => {
-        //         this.setState({ loading: false });
-        //     })
-        //     .catch(err => {
-        //         console.log(err);
-        //         this.setState({ loading: false });
-        //     });
     }
 
     render() {
@@ -48,7 +35,6 @@ class FullPost extends Component {
             comments
         } = this.props.post.post;
         moment.locale("pl");
-        // const { title, author, body, date, comments } = this.state.post;
 
         let fullPost = this.props.loading ? (
             <Spinner />
