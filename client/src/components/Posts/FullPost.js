@@ -56,10 +56,12 @@ class FullPost extends Component {
             <div className="container">
                 <div className="post">
                     <div className="text">
-                        <h1>{title}</h1>
-                        <p className="lead">Made by: {author}</p>
-                        <p>{moment(date).fromNow()}</p>
-                        <p>{body}</p>
+                        <div className="headers">
+                            <h1>{title}</h1>
+                            <p className="lead">Made by: {author}</p>
+                            <p>{moment(date).fromNow()}</p>
+                        </div>
+                        <p className="body">{body}</p>
                     </div>
                     <div className="image">
                         <img src="/images/food6.jpg" alt="" />

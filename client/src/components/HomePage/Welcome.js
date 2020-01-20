@@ -9,7 +9,7 @@ const Welcome = () => {
                     adipisicing elit. Recusandae, possimus.
                 </h1>
                 <div className="inner my-3">
-                    <div>
+                    <div className="text">
                         <p>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Voluptates magni adipisci iusto in, rerum
