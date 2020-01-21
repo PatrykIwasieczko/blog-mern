@@ -17,6 +17,8 @@ import AddPost from "./components/Posts/AddPost";
 import AllPosts from "./components/Posts/AllPosts";
 import MobileNavbar from "./components/Layout/MobileNavbar";
 import About from "./components/Layout/About";
+import Login from "./components/Auth/Login";
+import Register from "./components/Auth/Register";
 
 function App() {
     return (
@@ -30,6 +32,8 @@ function App() {
                     <Route path="/addpost" component={AddPost} />
                     <Route path="/allposts" component={AllPosts} />
                     <Route path="/about" component={About} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/login" component={Login} />
                     <Route path="/:id" component={FullPost} />
                     <Redirect to="/" />
                 </Switch>
