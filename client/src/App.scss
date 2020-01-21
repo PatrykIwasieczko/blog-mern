@@ -218,6 +218,29 @@ a {
     }
 }
 
+.about-page {
+    .first-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 2rem;
+        img {
+            width: 100%;
+        }
+    }
+    .second-section {
+        .author {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 2rem;
+            img {
+                width: 100%;
+                border-radius: 50%;
+            }
+            margin-bottom: 2rem;
+        }
+    }
+}
+
 .comments {
     .comment {
         padding-bottom: 1rem;
