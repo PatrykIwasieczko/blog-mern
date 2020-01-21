@@ -12,7 +12,7 @@ const AppNavbar = () => {
                     <NavLink to="/allposts">All Posts</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/">Posts</NavLink>
+                    <NavLink to="/about">About</NavLink>
                 </li>
             </ul>
             <ul>

@@ -16,6 +16,7 @@ import TopArrow from "./components/Layout/TopArrow";
 import AddPost from "./components/Posts/AddPost";
 import AllPosts from "./components/Posts/AllPosts";
 import MobileNavbar from "./components/Layout/MobileNavbar";
+import About from "./components/Layout/About";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                     <Route exact path="/" component={HomePage} />
                     <Route path="/addpost" component={AddPost} />
                     <Route path="/allposts" component={AllPosts} />
+                    <Route path="/about" component={About} />
                     <Route path="/:id" component={FullPost} />
                     <Redirect to="/" />
                 </Switch>
