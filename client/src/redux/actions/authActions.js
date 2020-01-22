@@ -11,6 +11,31 @@ import {
     REGISTER_FAIL
 } from "./types";
 
+export const login = ({ email, password }) => dispatch => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    const body = JSON.stringify({ email, password });
+
+    axios
+        .post("/api/auth", body, config)
+        .then(res =>
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            })
+        )
+        .catch(error => {
+            console.log(error);
+            dispatch({
+                type: LOGIN_FAIL
+            });
+        });
+};
+
 export const register = ({ name, email, password }) => dispatch => {
     const config = {
         headers: {

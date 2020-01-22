@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { login } from "../../redux/actions/authActions";
+
 class Login extends Component {
     state = {
         loginData: {
@@ -19,7 +22,9 @@ class Login extends Component {
 
     handleLogin = event => {
         event.preventDefault();
-        console.log(this.state.loginData);
+        const { email, password } = this.state.loginData;
+        const user = { email, password };
+        this.props.login(user);
     };
     render() {
         return (
@@ -58,4 +63,8 @@ class Login extends Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { login })(Login);
