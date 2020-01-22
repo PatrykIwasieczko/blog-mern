@@ -11,8 +11,8 @@ const User = require("../../models/User.js");
 // @access  Public
 
 router.post("/", (req, res) => {
-    const { email, password, fullName } = req.body;
-    if (!fullName || !email || !password) {
+    const { email, password, name } = req.body;
+    if (!name || !email || !password) {
         return res.status(400).json({ msg: "Please enter all fields" });
     }
 
@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
             return res.status(400).json({ msg: "User already exists" });
         }
         const newUser = new User({
-            fullName,
+            name,
             email,
             password
         });
@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
                                 token: token,
                                 user: {
                                     id: user.id,
-                                    fullName: user.fullName,
+                                    name: user.name,
                                     email: user.email
                                 }
                             });

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 class Register extends Component {
     state = {
         registerData: {
-            username: "",
+            name: "",
             email: "",
             password: ""
         }
@@ -32,7 +32,7 @@ class Register extends Component {
                     <input
                         name="username"
                         onChange={this.handleLoginChange}
-                        value={this.state.registerData.username}
+                        value={this.state.registerData.name}
                         type="text"
                         placeholder="Enter your username"
                     />

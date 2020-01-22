@@ -10,3 +10,37 @@ import {
     REGISTER_SUCCESS,
     REGISTER_FAIL
 } from "./types";
+
+export const register = ({ name, email, password }) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    const body = JSON.stringify({ name, email, password });
+
+    axios
+        .post("/api/users", body, config)
+        .then(res => dispatch({ type: REGISTER_SUCCESS, payload: res.data }))
+        .catch(error => {
+            console.log(error);
+            dispatch({ type: REGISTER_FAIL });
+        });
+};
+
+export const tokenConfig = getState => {
+    const token = getState().auth.token;
+
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    };
+
+    if (token) {
+        config.headers["Bearer "] = token;
+    }
+
+    return config;
+};
