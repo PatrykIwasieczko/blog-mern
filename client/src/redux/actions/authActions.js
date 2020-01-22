@@ -11,7 +11,7 @@ import {
     REGISTER_FAIL
 } from "./types";
 
-export const register = ({ name, email, password }) => {
+export const register = ({ name, email, password }) => dispatch => {
     const config = {
         headers: {
             "Content-Type": "application/json"

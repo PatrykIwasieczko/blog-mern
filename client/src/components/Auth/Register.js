@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { register } from "../../redux/actions/authActions";
+
 class Register extends Component {
     state = {
         registerData: {
@@ -18,9 +21,16 @@ class Register extends Component {
         });
     };
 
-    handleLogin = event => {
+    handleRegister = event => {
         event.preventDefault();
-        console.log(this.state.registerData);
+        const { name, email, password } = this.state.registerData;
+        const newUser = {
+            name,
+            email,
+            password
+        };
+        console.log(newUser);
+        this.props.register(newUser);
     };
     render() {
         return (
@@ -30,7 +40,7 @@ class Register extends Component {
                 <form className="form">
                     <p>Username</p>
                     <input
-                        name="username"
+                        name="name"
                         onChange={this.handleLoginChange}
                         value={this.state.registerData.name}
                         type="text"
@@ -53,7 +63,7 @@ class Register extends Component {
                             type="password"
                             placeholder="Enter your password"
                         />
-                        <button className="btn" onClick={this.handleLogin}>
+                        <button className="btn" onClick={this.handleRegister}>
                             Submit
                         </button>
                     </div>
@@ -67,4 +77,8 @@ class Register extends Component {
     }
 }
 
-export default Register;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { register })(Register);
