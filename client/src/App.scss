@@ -257,6 +257,26 @@ a {
     }
 }
 
+.form {
+    border: 1px solid $primary-color;
+    padding: 2rem;
+    border-radius: 25px;
+    width: 30vw;
+    margin: 0 auto;
+
+    input {
+        padding: 0.5rem;
+        border-radius: 25px;
+        outline: none;
+    }
+
+    .form-grid {
+        button {
+            margin-left: 2rem;
+        }
+    }
+}
+
 .footer {
     background-color: $dark-color;
     opacity: 0.9;

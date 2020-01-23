@@ -12,7 +12,7 @@ class Register extends Component {
             password: ""
         }
     };
-    handleLoginChange = event => {
+    handleRegisterChange = event => {
         this.setState({
             registerData: {
                 ...this.state.registerData,
@@ -34,30 +34,30 @@ class Register extends Component {
     render() {
         return (
             <div className="container">
-                <h1>Register</h1>
+                <h1 className="text-center">Register</h1>
 
                 <form className="form">
-                    <p>Username</p>
+                    <h2 className="py-1">Username</h2>
                     <input
                         name="name"
-                        onChange={this.handleLoginChange}
+                        onChange={this.handleRegisterChange}
                         value={this.state.registerData.name}
                         type="text"
                         placeholder="Enter your username"
                     />
-                    <p>Email</p>
+                    <h2 className="py-1">Email</h2>
                     <input
                         name="email"
-                        onChange={this.handleLoginChange}
+                        onChange={this.handleRegisterChange}
                         value={this.state.registerData.email}
                         type="email"
                         placeholder="Enter your email"
                     />
-                    <p>Password</p>
-                    <div className="comment-grid">
+                    <h2 className="py-1">Password</h2>
+                    <div className="form-grid">
                         <input
                             name="password"
-                            onChange={this.handleLoginChange}
+                            onChange={this.handleRegisterChange}
                             value={this.state.registerData.password}
                             type="password"
                             placeholder="Enter your password"
@@ -67,7 +67,7 @@ class Register extends Component {
                         </button>
                     </div>
                 </form>
-                <p className="lead">
+                <p className="lead my-2 text-center">
                     Already have an account? Login{" "}
                     <NavLink to="/login">here</NavLink>
                 </p>

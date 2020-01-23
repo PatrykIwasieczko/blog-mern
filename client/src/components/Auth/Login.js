@@ -29,10 +29,10 @@ class Login extends Component {
     render() {
         return (
             <div className="container">
-                <h1>Login</h1>
+                <h1 className="text-center">Login</h1>
 
                 <form className="form">
-                    <p>Email</p>
+                    <h2 className="py-1">Email</h2>
                     <input
                         name="email"
                         onChange={this.handleLoginChange}
@@ -40,8 +40,8 @@ class Login extends Component {
                         type="email"
                         placeholder="Enter your email"
                     />
-                    <p>Password</p>
-                    <div className="comment-grid">
+                    <h2 className="py-1">Password</h2>
+                    <div className="form-grid">
                         <input
                             name="password"
                             onChange={this.handleLoginChange}
@@ -54,7 +54,7 @@ class Login extends Component {
                         </button>
                     </div>
                 </form>
-                <p className="lead">
+                <p className="lead my-2 text-center">
                     Don't have an account yet? Create it{" "}
                     <NavLink to="/register">here</NavLink>
                 </p>
