@@ -1,3 +1,9 @@
+@media screen and (min-width: 1200px) {
+    .form {
+        max-width: 35rem;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .landing {
         &-inner {
@@ -26,6 +32,18 @@
             h1 {
                 font-size: 1.5rem;
             }
+        }
+    }
+    .form {
+        width: 70vw;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    .form {
+        .btn {
+            display: block;
+            margin: 1rem auto;
         }
     }
 }
@@ -209,6 +227,18 @@
                     }
                 }
             }
+        }
+    }
+
+    .form {
+        width: 80vw;
+
+        input {
+            max-width: 10rem;
+        }
+        .btn {
+            display: block;
+            margin: 1rem auto;
         }
     }
 }
