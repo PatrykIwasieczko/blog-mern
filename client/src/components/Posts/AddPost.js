@@ -43,10 +43,10 @@ class AddPost extends Component {
 
     render() {
         return (
-            <div className="container addpost-form">
-                <h1>Add a Post</h1>
+            <div className="container container-form py-2">
+                <h1 className="text-center">Add a Post</h1>
                 <form className="form">
-                    <p>Post title</p>
+                    <h2 className="py-1">Post title</h2>
                     <input
                         value={this.state.post.title}
                         onChange={this.handlePostChange}
@@ -54,7 +54,7 @@ class AddPost extends Component {
                         name="title"
                         placeholder="Enter post title"
                     />
-                    <p>Post content</p>
+                    <h2 className="py-1">Post content</h2>
                     <textarea
                         value={this.state.post.body}
                         onChange={this.handlePostChange}
@@ -63,7 +63,7 @@ class AddPost extends Component {
                         cols="30"
                         rows="10"
                     ></textarea>
-                    <p>Author</p>
+                    <h2 className="py-1">Author</h2>
                     <div className="comment-grid">
                         <select onChange={this.handlePostChange} name="author">
                             {this.state.authors.map((author, index) => (

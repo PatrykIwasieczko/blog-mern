@@ -46,7 +46,7 @@ class CommentForm extends Component {
             <div className="container comment-form">
                 <h1>Leave a comment</h1>
                 <form onSubmit={this.handlePostComment} className="form">
-                    <p>Leave a comment</p>
+                    <h2 className="py-1">Comment body</h2>
                     <textarea
                         name="body"
                         onChange={this.handleCommentChange}
@@ -55,7 +55,7 @@ class CommentForm extends Component {
                         cols="30"
                         rows="10"
                     ></textarea>
-                    <p>Name</p>
+                    <h2 className="py-1">Name</h2>
                     <div className="comment-grid">
                         <input
                             name="user"

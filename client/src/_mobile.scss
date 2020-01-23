@@ -4,6 +4,16 @@
     }
 }
 
+@media screen and(max-width: 920px) {
+    .container-form {
+        .form {
+            .btn {
+                width: 6rem;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 800px) {
     .landing {
         &-inner {
@@ -34,8 +44,10 @@
             }
         }
     }
-    .form {
-        width: 70vw;
+    .container-form {
+        .form {
+            width: 70vw;
+        }
     }
 }
 

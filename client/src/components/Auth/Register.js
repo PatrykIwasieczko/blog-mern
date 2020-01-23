@@ -33,7 +33,7 @@ class Register extends Component {
     };
     render() {
         return (
-            <div className="container">
+            <div className="container container-form">
                 <h1 className="text-center">Register</h1>
 
                 <form className="form">

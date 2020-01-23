@@ -183,10 +183,15 @@ a {
         }
     }
 }
-.addpost-form {
+.container-form {
     .form {
         display: flex;
         flex-direction: column;
+        border: 1px solid $primary-color;
+        padding: 2rem;
+        border-radius: 25px;
+        width: 50vw;
+        margin: 0 auto;
 
         textarea,
         select,
@@ -200,20 +205,9 @@ a {
             height: 2rem;
         }
 
-        p {
-            margin-top: 2rem;
-            margin-left: 1rem;
-        }
-
         .btn {
             width: 10rem;
             margin-left: 1rem;
-        }
-
-        .comment-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            margin-bottom: 1rem;
         }
     }
 }
@@ -253,26 +247,6 @@ a {
 
         &:last-child {
             border: none;
-        }
-    }
-}
-
-.form {
-    border: 1px solid $primary-color;
-    padding: 2rem;
-    border-radius: 25px;
-    width: 50vw;
-    margin: 0 auto;
-
-    input {
-        padding: 0.5rem;
-        border-radius: 25px;
-        outline: none;
-    }
-
-    .form-grid {
-        button {
-            margin-left: 2rem;
         }
     }
 }
