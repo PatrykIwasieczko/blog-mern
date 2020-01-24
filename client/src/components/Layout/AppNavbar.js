@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+import { logout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
 
 class AppNavbar extends Component {
@@ -21,7 +22,9 @@ class AppNavbar extends Component {
                     <NavLink to="/about">About</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/logout">Logout</NavLink>
+                    <NavLink to="/" onClick={this.props.logout}>
+                        Logout
+                    </NavLink>
                 </li>
             </>
         );
@@ -72,4 +75,4 @@ const mapStateToProps = state => ({
     auth: state.auth
 });
 
-export default connect(mapStateToProps, null)(AppNavbar);
+export default connect(mapStateToProps, { logout })(AppNavbar);
