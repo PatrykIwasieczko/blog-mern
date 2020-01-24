@@ -11,6 +11,22 @@ import {
     REGISTER_FAIL
 } from "./types";
 
+export const loadUser = () => (dispatch, getState) => {
+    dispatch({ type: USER_LOADING });
+
+    axios
+        .get("/api/auth/user", tokenConfig(getState))
+        .then(res =>
+            dispatch({
+                type: USER_LOADED,
+                payload: res.data
+            })
+        )
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const login = ({ email, password }) => dispatch => {
     const config = {
         headers: {
