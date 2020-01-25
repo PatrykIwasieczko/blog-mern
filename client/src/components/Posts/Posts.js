@@ -20,7 +20,6 @@ class Posts extends Component {
     }
 
     modalOpen = post => {
-        // this.props.deletePost(postId);
         this.setState({ isOpen: true, deletingId: post._id });
     };
 
@@ -30,6 +29,7 @@ class Posts extends Component {
 
     render() {
         const { posts } = this.props.post;
+        const { isAuthenticated } = this.props.auth;
         moment.locale("pl");
         let postSpinner = this.props.post.loading ? (
             <>
@@ -55,10 +55,12 @@ class Posts extends Component {
                             <NavLink to={`/${post._id}`}>
                                 <button className="btn">Read more</button>
                             </NavLink>
-                            <i
-                                onClick={this.modalOpen.bind(this, post)}
-                                className="fas fa-times fa-2x delete-post-icon"
-                            ></i>
+                            {isAuthenticated ? (
+                                <i
+                                    onClick={this.modalOpen.bind(this, post)}
+                                    className="fas fa-times fa-2x delete-post-icon"
+                                ></i>
+                            ) : null}
                         </div>
                     ))}
                 </div>
@@ -81,7 +83,8 @@ class Posts extends Component {
 }
 
 const mapStateToProps = state => ({
-    post: state.post
+    post: state.post,
+    auth: state.auth
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);
