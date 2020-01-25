@@ -86,7 +86,7 @@ export const tokenConfig = getState => {
     };
 
     if (token) {
-        config.headers["Bearer "] = token;
+        config.headers["auth-token"] = token;
     }
 
     return config;

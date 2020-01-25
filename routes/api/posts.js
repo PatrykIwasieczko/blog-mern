@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 
 const Post = require("../../models/Post.js");
 const Comment = require("../../models/Comment.js");
@@ -30,8 +31,8 @@ router.get("/:id", async (req, res) => {
 
 // @route   POST api/posts
 // @desc    Post the post
-// @access  Public
-router.post("/", async (req, res) => {
+// @access  Protected
+router.post("/", auth, async (req, res) => {
     const { title, body, author } = req.body;
     if (!title || !body || !author) {
         return res.status(400).json({ msg: "Please enter all fields" });
@@ -51,8 +52,8 @@ router.post("/", async (req, res) => {
 
 // @route   DELETE api/posts/id
 // @desc    Delete a post
-// @access  Public
-router.delete("/:id", async (req, res) => {
+// @access  Protected
+router.delete("/:id", auth, async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         await post.remove();

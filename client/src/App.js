@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import "./App.scss";
 import { Route, Switch, Redirect } from "react-router-dom";
 
 // Redux
 import { Provider } from "react-redux";
 import store from "./store";
+import { loadUser } from "./redux/actions/authActions";
 
 // Components
 import AppNavbar from "./components/Layout/AppNavbar";
@@ -20,28 +21,33 @@ import About from "./components/Layout/About";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 
-function App() {
-    return (
-        <Provider store={store}>
-            <div>
-                <AppNavbar />
-                <MobileNavbar />
-                <Landing />
-                <Switch>
-                    <Route exact path="/" component={HomePage} />
-                    <Route path="/addpost" component={AddPost} />
-                    <Route path="/allposts" component={AllPosts} />
-                    <Route path="/about" component={About} />
-                    <Route path="/register" component={Register} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/:id" component={FullPost} />
-                    <Redirect to="/" />
-                </Switch>
-                <Footer />
-                <TopArrow />
-            </div>
-        </Provider>
-    );
+class App extends Component {
+    componentDidMount() {
+        store.dispatch(loadUser());
+    }
+    render() {
+        return (
+            <Provider store={store}>
+                <div>
+                    <AppNavbar />
+                    <MobileNavbar />
+                    <Landing />
+                    <Switch>
+                        <Route exact path="/" component={HomePage} />
+                        <Route path="/addpost" component={AddPost} />
+                        <Route path="/allposts" component={AllPosts} />
+                        <Route path="/about" component={About} />
+                        <Route path="/register" component={Register} />
+                        <Route path="/login" component={Login} />
+                        <Route path="/:id" component={FullPost} />
+                        <Redirect to="/" />
+                    </Switch>
+                    <Footer />
+                    <TopArrow />
+                </div>
+            </Provider>
+        );
+    }
 }
 
 export default App;
