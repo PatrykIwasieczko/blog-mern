@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 class AppNavbar extends Component {
     render() {
-        const { isAuthenticated, user } = this.props.auth;
+        const { isAuthenticated } = this.props.auth;
         const userLinks = (
             <>
                 <li>
