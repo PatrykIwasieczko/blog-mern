@@ -1,14 +1,20 @@
+// React
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import moment from "moment";
-import "moment/locale/pl";
-import { getPosts } from "../../redux/actions/postActions";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 // Components
 import Spinner from "../UI/Spinner";
 import ConfirmDeletePost from "./ConfirmDeletePost";
 import Backdrop from "../Layout/Backdrop";
+
+// Redux
+import { getPosts } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
+
+// Other libraries
+import moment from "moment";
+import "moment/locale/pl";
 
 class Posts extends Component {
     state = {
@@ -28,10 +34,9 @@ class Posts extends Component {
     };
 
     render() {
-        const { posts } = this.props.post;
-        const { isAuthenticated } = this.props.auth;
+        const { isAuthenticated, posts, loading } = this.props;
         moment.locale("pl");
-        let postSpinner = this.props.post.loading ? (
+        let postSpinner = loading ? (
             <>
                 <Spinner />
                 <Spinner />
@@ -82,9 +87,16 @@ class Posts extends Component {
     }
 }
 
+Posts.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    loading: PropTypes.bool,
+    posts: PropTypes.array.isRequired
+};
+
 const mapStateToProps = state => ({
-    post: state.post,
-    auth: state.auth
+    posts: state.post.posts,
+    isAuthenticated: state.auth.isAuthenticated,
+    loading: state.post.loading
 });
 
 export default connect(mapStateToProps, { getPosts })(Posts);

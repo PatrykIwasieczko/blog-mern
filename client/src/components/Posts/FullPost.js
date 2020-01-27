@@ -1,13 +1,19 @@
+// React
 import React, { Component } from "react";
-import moment from "moment";
-import "moment/locale/pl";
-import { getPost } from "../../redux/actions/postActions";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 // Components
 import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
 import Spinner from "../UI/Spinner";
+
+// Redux
+import { getPost } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
+
+// Other libraries
+import moment from "moment";
+import "moment/locale/pl";
 
 class FullPost extends Component {
     state = {
@@ -16,8 +22,7 @@ class FullPost extends Component {
             title: "",
             body: "",
             _id: ""
-        },
-        loading: false
+        }
     };
 
     componentDidMount() {
@@ -26,14 +31,7 @@ class FullPost extends Component {
     }
 
     render() {
-        const {
-            title,
-            author,
-            date,
-            body,
-            _id,
-            comments
-        } = this.props.post.post;
+        const { title, author, date, body, _id, comments } = this.props.post;
         moment.locale("pl");
 
         let fullPost = this.props.loading ? (
@@ -64,8 +62,13 @@ class FullPost extends Component {
     }
 }
 
+FullPost.propTypes = {
+    post: PropTypes.object.isRequired,
+    getPost: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
-    post: state.post
+    post: state.post.post
 });
 
 export default connect(mapStateToProps, { getPost })(FullPost);

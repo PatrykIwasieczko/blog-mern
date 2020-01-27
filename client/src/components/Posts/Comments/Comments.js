@@ -1,4 +1,7 @@
+// React
 import React, { Component } from "react";
+
+// Other libraries
 import moment from "moment";
 import "moment/locale/pl";
 

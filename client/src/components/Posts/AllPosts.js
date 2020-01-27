@@ -1,12 +1,18 @@
+// React
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-import moment from "moment";
-import "moment/locale/pl";
-import { getPosts } from "../../redux/actions/postActions";
-import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
 // Components
 import Spinner from "../UI/Spinner";
+
+// Redux
+import { getPosts } from "../../redux/actions/postActions";
+import { connect } from "react-redux";
+
+// Other libraries
+import moment from "moment";
+import "moment/locale/pl";
 
 class AllPosts extends Component {
     state = {
@@ -23,9 +29,9 @@ class AllPosts extends Component {
     };
 
     render() {
-        const { posts } = this.props.post;
+        const { posts, loading } = this.props;
         moment.locale("pl");
-        let postSpinner = this.props.post.loading ? (
+        let postSpinner = loading ? (
             <>
                 <Spinner />
                 <Spinner />
@@ -84,8 +90,15 @@ class AllPosts extends Component {
     }
 }
 
+AllPosts.propTypes = {
+    posts: PropTypes.array.isRequired,
+    loading: PropTypes.bool,
+    getPosts: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
-    post: state.post
+    posts: state.post.posts,
+    loading: state.post.isLoading
 });
 
 export default connect(mapStateToProps, { getPosts })(AllPosts);

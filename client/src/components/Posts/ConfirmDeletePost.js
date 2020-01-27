@@ -1,5 +1,8 @@
+// React
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
+// Redux
 import { deletePost } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
 
@@ -8,6 +11,7 @@ class ConfirmDeletePost extends Component {
         this.props.deletePost(this.props.postId);
         this.props.hideModal();
     };
+
     render() {
         let modalMarkup = this.props.isOpen ? (
             <div className="confirm-delete-modal">
@@ -30,5 +34,9 @@ class ConfirmDeletePost extends Component {
         return <> {modalMarkup}</>;
     }
 }
+
+ConfirmDeletePost.propTypes = {
+    deletePost: PropTypes.func.isRequired
+};
 
 export default connect(null, { deletePost })(ConfirmDeletePost);

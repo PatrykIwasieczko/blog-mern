@@ -1,12 +1,15 @@
+// React
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
+// Redux
 import { logout } from "../../redux/actions/authActions";
 import { connect } from "react-redux";
 
 class AppNavbar extends Component {
     render() {
-        const { isAuthenticated } = this.props.auth;
+        const { isAuthenticated } = this.props;
         const userLinks = (
             <>
                 <li>
@@ -71,8 +74,13 @@ class AppNavbar extends Component {
     }
 }
 
+AppNavbar.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    logout: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
-    auth: state.auth
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { logout })(AppNavbar);

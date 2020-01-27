@@ -1,11 +1,9 @@
+// React
 import React, { Component } from "react";
-import "./App.scss";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-// Redux
-import { Provider } from "react-redux";
-import store from "./store";
-import { loadUser } from "./redux/actions/authActions";
+// Styles
+import "./App.scss";
 
 // Components
 import AppNavbar from "./components/Layout/AppNavbar";
@@ -20,6 +18,11 @@ import MobileNavbar from "./components/Layout/MobileNavbar";
 import About from "./components/Layout/About";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+
+// Redux
+import store from "./store";
+import { Provider } from "react-redux";
+import { loadUser } from "./redux/actions/authActions";
 
 class App extends Component {
     componentDidMount() {

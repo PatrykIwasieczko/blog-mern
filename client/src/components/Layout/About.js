@@ -1,3 +1,4 @@
+// React
 import React from "react";
 
 const About = () => {
@@ -10,10 +11,13 @@ const About = () => {
                     <h2 className="text-center">Welcome to our site</h2>
 
                     <p className="lead">
-                        Here we cook and eat healthy and simple vegetarian food
-                        with natural ingredients, whole grains, good fats, fruit
-                        and vegetables. Please e-mail David or Luise if you have
-                        any questions or just want to say hi!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Non aperiam quibusdam veritatis voluptates! Aliquid
+                        dolorem libero placeat magnam mollitia non repudiandae
+                        ipsam explicabo, deleniti perspiciatis ex assumenda
+                        blanditiis id odio labore nam vero sit esse ullam
+                        sapiente et beatae fuga impedit asperiores. Natus fugiat
+                        nisi, officia facilis vero possimus voluptatum?
                     </p>
                 </div>
             </div>

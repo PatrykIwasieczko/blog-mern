@@ -1,6 +1,9 @@
+// React
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
 
+// Redux
 import { connect } from "react-redux";
 import { login } from "../../redux/actions/authActions";
 
@@ -62,6 +65,11 @@ class Login extends Component {
         );
     }
 }
+
+Login.propTypes = {
+    isAuthenticated: PropTypes.bool,
+    login: PropTypes.func.isRequired
+};
 
 const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated

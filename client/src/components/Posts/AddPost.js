@@ -1,4 +1,8 @@
+// React
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+
+// Redux
 import { addPost } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
 
@@ -81,5 +85,9 @@ class AddPost extends Component {
         );
     }
 }
+
+AddPost.propTypes = {
+    addPost: PropTypes.func.isRequired
+};
 
 export default connect(null, { addPost })(AddPost);
