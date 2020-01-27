@@ -1,4 +1,5 @@
 import axios from "axios";
+import { returnErrors } from "./errorActions";
 
 import {
     USER_LOADED,
@@ -7,7 +8,8 @@ import {
     LOGIN_FAIL,
     LOGOUT_SUCCESS,
     REGISTER_SUCCESS,
-    REGISTER_FAIL
+    REGISTER_FAIL,
+    AUTH_ERROR
 } from "./types";
 
 export const loadUser = () => (dispatch, getState) => {
@@ -21,8 +23,9 @@ export const loadUser = () => (dispatch, getState) => {
                 payload: res.data
             })
         )
-        .catch(err => {
-            console.log(err);
+        .catch(error => {
+            dispatch(returnErrors(error.response.data, error.response.status));
+            dispatch({ type: AUTH_ERROR });
         });
 };
 
@@ -44,7 +47,13 @@ export const login = ({ email, password }) => dispatch => {
             })
         )
         .catch(error => {
-            console.log(error);
+            dispatch(
+                returnErrors(
+                    error.response.data,
+                    error.response.status,
+                    "LOGIN_FAIL"
+                )
+            );
             dispatch({
                 type: LOGIN_FAIL
             });
@@ -64,7 +73,13 @@ export const register = ({ name, email, password }) => dispatch => {
         .post("/api/users", body, config)
         .then(res => dispatch({ type: REGISTER_SUCCESS, payload: res.data }))
         .catch(error => {
-            console.log(error);
+            dispatch(
+                returnErrors(
+                    error.response.data,
+                    error.response.status,
+                    "REGISTER_FAIL"
+                )
+            );
             dispatch({ type: REGISTER_FAIL });
         });
 };

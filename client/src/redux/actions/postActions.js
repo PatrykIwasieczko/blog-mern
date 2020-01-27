@@ -7,6 +7,8 @@ import {
     STOP_POSTS_LOADING
 } from "./types";
 import axios from "axios";
+import { tokenConfig } from "./authActions";
+import { returnErrors } from "./errorActions";
 
 export const getPosts = () => dispatch => {
     dispatch(setPostsLoading());
@@ -21,7 +23,9 @@ export const getPosts = () => dispatch => {
         .then(() => {
             dispatch(stopPostsLoading());
         })
-        .catch(err => console.error(err));
+        .catch(error =>
+            dispatch(returnErrors(error.response.data, error.response.status))
+        );
 };
 
 export const getPost = postId => dispatch => {
@@ -37,8 +41,8 @@ export const getPost = postId => dispatch => {
         .then(() => {
             dispatch(stopPostsLoading());
         })
-        .catch(err => {
-            console.log(err);
+        .catch(error => {
+            dispatch(returnErrors(error.response.data, error.response.status));
             dispatch(stopPostsLoading());
         });
 };
@@ -56,8 +60,8 @@ export const addPost = (post, callback) => dispatch => {
             callback();
         })
 
-        .catch(err => {
-            console.log(err);
+        .catch(error => {
+            dispatch(returnErrors(error.response.data, error.response.status));
         });
 };
 
@@ -70,8 +74,8 @@ export const deletePost = postId => dispatch => {
                 payload: postId
             });
         })
-        .catch(err => {
-            console.log(err);
+        .catch(error => {
+            dispatch(returnErrors(error.response.data, error.response.status));
         });
 };
 
