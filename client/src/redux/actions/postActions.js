@@ -47,9 +47,9 @@ export const getPost = postId => dispatch => {
         });
 };
 
-export const addPost = (post, callback) => dispatch => {
+export const addPost = (post, callback) => (dispatch, getState) => {
     axios
-        .post("/api/posts", post)
+        .post("/api/posts", post, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: ADD_POST,
@@ -65,9 +65,9 @@ export const addPost = (post, callback) => dispatch => {
         });
 };
 
-export const deletePost = postId => dispatch => {
+export const deletePost = postId => (dispatch, getState) => {
     axios
-        .delete(`/api/posts/${postId}`)
+        .delete(`/api/posts/${postId}`, tokenConfig(getState))
         .then(res => {
             dispatch({
                 type: DELETE_POST,

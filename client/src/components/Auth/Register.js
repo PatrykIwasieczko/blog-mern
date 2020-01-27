@@ -33,6 +33,7 @@ class Register extends Component {
             password
         };
         this.props.register(newUser);
+        this.props.history.push("/");
     };
     render() {
         return (
