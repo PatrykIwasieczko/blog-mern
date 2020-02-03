@@ -31,7 +31,15 @@ class FullPost extends Component {
     }
 
     render() {
-        const { title, author, date, body, _id, comments } = this.props.post;
+        const {
+            title,
+            author,
+            date,
+            body,
+            _id,
+
+            comments
+        } = this.props.post;
         moment.locale("pl");
 
         let fullPost = this.props.loading ? (
@@ -48,7 +56,7 @@ class FullPost extends Component {
                         <p className="body">{body}</p>
                     </div>
                     <div className="image">
-                        <img src="/images/food6.jpg" alt="" />
+                        <img src="/images/food4.jpg" alt="" />
                     </div>
                 </div>
                 <div className="">

@@ -19,6 +19,10 @@ const PostSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    image: {
+        data: Buffer,
+        contentType: String
+    },
     comments: [CommentSchema]
 });
 

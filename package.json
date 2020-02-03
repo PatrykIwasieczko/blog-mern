@@ -11,9 +11,11 @@
     "author": "Patryk Iwasieczko",
     "license": "MIT",
     "dependencies": {
+        "@babel/runtime": "^7.8.4",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "express": "^4.17.1",
+        "formidable": "^1.2.1",
         "jsonwebtoken": "^8.5.1",
         "mongoose": "^5.8.1"
     },

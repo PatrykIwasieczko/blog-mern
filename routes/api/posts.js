@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const auth = require("../../middleware/auth");
+const formidable = require("formidable");
+const fs = require("fs");
 
 const Post = require("../../models/Post.js");
 const Comment = require("../../models/Comment.js");
@@ -32,23 +34,51 @@ router.get("/:id", async (req, res) => {
 // @route   POST api/posts
 // @desc    Post the post
 // @access  Protected
-router.post("/", auth, async (req, res) => {
-    const { title, body, author } = req.body;
-    if (!title || !body || !author) {
-        return res.status(400).json({ msg: "Please enter all fields" });
-    }
-    try {
-        const newPost = new Post({
-            title: title,
-            body: body,
-            author: author
+router.post("/", async (req, res) => {
+    // const { title, body, author } = req.body;
+    // if (!title || !body || !author) {
+    //     return res.status(400).json({ msg: "Please enter all fields" });
+    // }
+    let form = new formidable.IncomingForm();
+    form.keepExtensions = true;
+    form.parse(req, (err, fields, files) => {
+        if (err) {
+            return res.status(400).json({
+                error: "Image could not be uploaded"
+            });
+        }
+        let post = new Post(fields);
+        if (files.image) {
+            post.image.data = fs.readFileSync(files.image.path);
+            post.image.contentType = files.image.type;
+        }
+        post.save((err, result) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "error"
+                });
+            }
+            res.json(result);
         });
-        await newPost.save();
-        return res.json(newPost);
-    } catch (err) {
-        return res.status(400).json({ msg: err.message });
-    }
+    });
+
+    // try {
+    //     const newPost = new Post({
+    //         title: title,
+    //         body: body,
+    //         author: author
+    //     });
+    //     await newPost.save();
+    //     return res.json(newPost);
+    // } catch (err) {
+    //     return res.status(400).json({ msg: err.message });
+    // }
 });
+
+const image = (req, res, next) => {
+    res.set("Content-Type", req.post.image.contentType);
+    return res.send(req.post.image.data);
+};
 
 // @route   DELETE api/posts/id
 // @desc    Delete a post

@@ -5,42 +5,57 @@ import PropTypes from "prop-types";
 // Redux
 import { addPost } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
+import axios from "axios";
 
 class AddPost extends Component {
     state = {
-        authors: ["First author", "Second author"],
-        post: {
-            author: "First author",
-            body: "",
-            title: ""
-        }
+        // authors: "First author",
+        author: "First author",
+        body: "",
+        title: "",
+        image: ""
     };
 
-    handlePostChange = event => {
+    componentDidMount() {
+        this.postData = new FormData();
+    }
+
+    // handlePostChange = event => {
+    //     this.setState({
+    //         post: {
+    //             ...this.state.post,
+    //             [event.target.name]: event.target.value
+    //         }
+    //     });
+    // };
+
+    handleChange = name => event => {
+        const value =
+            name === "image" ? event.target.files[0] : event.target.value;
+        this.postData.set(name, value);
+        this.postData.append("author", "First author");
         this.setState({
-            post: {
-                ...this.state.post,
-                [event.target.name]: event.target.value
-            }
+            [name]: value
         });
     };
 
     addPost = event => {
         event.preventDefault();
-        const { author, body, title } = this.state.post;
-        const newPost = {
-            author,
-            body,
-            title
-        };
-        this.props.addPost(newPost, () => {
+        // const { author, body, title } = this.state.post;
+        // const newPost = {
+        //     author,
+        //     body,
+        //     title
+        // };
+
+        this.props.addPost(this.postData, () => {
             this.setState({
-                post: {
-                    author: "First author",
-                    body: "",
-                    title: ""
-                }
+                author: "First author",
+                body: "",
+                title: "",
+                image: ""
             });
+
             this.props.history.push("/");
         });
     };
@@ -52,30 +67,39 @@ class AddPost extends Component {
                 <form className="form">
                     <h2 className="py-1">Post title</h2>
                     <input
-                        value={this.state.post.title}
-                        onChange={this.handlePostChange}
+                        value={this.state.title}
+                        onChange={this.handleChange("title")}
                         type="text"
                         name="title"
                         placeholder="Enter post title"
                     />
                     <h2 className="py-1">Post content</h2>
                     <textarea
-                        value={this.state.post.body}
-                        onChange={this.handlePostChange}
+                        value={this.state.body}
+                        onChange={this.handleChange("body")}
                         name="body"
                         id=""
                         cols="30"
                         rows="10"
                     ></textarea>
+                    <input
+                        accept="image/*"
+                        onChange={this.handleChange("image")}
+                        id="file"
+                        type="file"
+                    />
                     <h2 className="py-1">Author</h2>
                     <div className="comment-grid">
-                        <select onChange={this.handlePostChange} name="author">
+                        {/* <select
+                            onChange={this.handleChange("author")}
+                            name="author"
+                        >
                             {this.state.authors.map((author, index) => (
                                 <option key={index} value={author}>
                                     {author}
                                 </option>
                             ))}
-                        </select>
+                        </select> */}
                         <button onClick={this.addPost} className="btn">
                             Submit
                         </button>

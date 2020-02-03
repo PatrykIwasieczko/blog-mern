@@ -47,7 +47,7 @@ export const getPost = postId => dispatch => {
         });
 };
 
-export const addPost = (post, callback) => (dispatch, getState) => {
+export const addPost = post => (dispatch, getState) => {
     axios
         .post("/api/posts", post, tokenConfig(getState))
         .then(res => {
@@ -55,9 +55,6 @@ export const addPost = (post, callback) => (dispatch, getState) => {
                 type: ADD_POST,
                 payload: res.data
             });
-        })
-        .then(() => {
-            callback();
         })
 
         .catch(error => {
