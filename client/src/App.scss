@@ -205,6 +205,36 @@ a {
             height: 2rem;
         }
 
+        .input-image {
+            display: flex;
+        }
+
+        .input-file {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+        }
+
+        span {
+            margin-left: 1rem;
+        }
+
+        .uploadFileName {
+            margin-left: 2rem;
+        }
+
+        .input-file + label {
+            margin-top: 1rem;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: $primary-color;
+            display: inline-block;
+            cursor: pointer;
+        }
+
         .btn {
             width: 10rem;
             margin-left: 1rem;

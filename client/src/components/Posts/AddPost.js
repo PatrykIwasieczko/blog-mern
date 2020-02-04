@@ -63,14 +63,24 @@ class AddPost extends Component {
                         cols="30"
                         rows="10"
                     ></textarea>
-                    <input
-                        accept="image/*"
-                        onChange={this.handleChange("image")}
-                        id="file"
-                        type="file"
-                    />
+                    <div className="input">
+                        <input
+                            accept="image/*"
+                            onChange={this.handleChange("image")}
+                            id="file"
+                            type="file"
+                            className="input-file"
+                        />
+                        <label htmlFor="file">
+                            <i className="fas fa-upload"></i>
+                            <span>Add file</span>
+                        </label>
+                        <span className="uploadFileName">
+                            {this.state.image.name}
+                        </span>
+                    </div>
                     <h2 className="py-1">Author</h2>
-                    <div className="comment-grid">
+                    <div>
                         <select
                             onChange={this.handleChange("author")}
                             name="author"
