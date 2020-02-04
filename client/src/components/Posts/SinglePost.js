@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 // Components
 import ConfirmDeletePost from "./ConfirmDeletePost";
 import Backdrop from "../Layout/Backdrop";
+import Spinner from "../UI/Spinner";
 
 // Redux
 import { connect } from "react-redux";
@@ -47,7 +48,9 @@ class SinglePost extends Component {
     };
     render() {
         const { _id, title, body, date } = this.props.post;
-        return (
+        let content = this.props.loading ? (
+            <Spinner />
+        ) : (
             <div className="post" postid={_id}>
                 <img
                     src={
@@ -79,6 +82,7 @@ class SinglePost extends Component {
                 />
             </div>
         );
+        return <>{content}</>;
     }
 }
 

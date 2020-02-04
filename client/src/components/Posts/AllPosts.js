@@ -82,9 +82,6 @@ class AllPosts extends Component {
                             </div>
                         ))}
                 </div>
-                <div className="show-more-btn my-2">
-                    <button className="btn">Read more</button>
-                </div>
             </>
         );
     }

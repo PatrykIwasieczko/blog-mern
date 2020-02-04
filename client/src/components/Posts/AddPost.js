@@ -5,11 +5,9 @@ import PropTypes from "prop-types";
 // Redux
 import { addPost } from "../../redux/actions/postActions";
 import { connect } from "react-redux";
-import axios from "axios";
 
 class AddPost extends Component {
     state = {
-        // authors: "First author",
         author: "First author",
         body: "",
         title: "",
@@ -20,20 +18,10 @@ class AddPost extends Component {
         this.postData = new FormData();
     }
 
-    // handlePostChange = event => {
-    //     this.setState({
-    //         post: {
-    //             ...this.state.post,
-    //             [event.target.name]: event.target.value
-    //         }
-    //     });
-    // };
-
     handleChange = name => event => {
         const value =
             name === "image" ? event.target.files[0] : event.target.value;
         this.postData.set(name, value);
-        this.postData.append("author", "First author");
         this.setState({
             [name]: value
         });
@@ -41,13 +29,7 @@ class AddPost extends Component {
 
     addPost = event => {
         event.preventDefault();
-        // const { author, body, title } = this.state.post;
-        // const newPost = {
-        //     author,
-        //     body,
-        //     title
-        // };
-
+        this.postData.append("author", this.state.author);
         this.props.addPost(this.postData, () => {
             this.setState({
                 author: "First author",
@@ -55,7 +37,6 @@ class AddPost extends Component {
                 title: "",
                 image: ""
             });
-
             this.props.history.push("/");
         });
     };
@@ -90,16 +71,14 @@ class AddPost extends Component {
                     />
                     <h2 className="py-1">Author</h2>
                     <div className="comment-grid">
-                        {/* <select
+                        <select
                             onChange={this.handleChange("author")}
                             name="author"
                         >
-                            {this.state.authors.map((author, index) => (
-                                <option key={index} value={author}>
-                                    {author}
-                                </option>
+                            <option value="First author">First author</option>
+                            <option value="Second author">Second author</option>
                             ))}
-                        </select> */}
+                        </select>
                         <button onClick={this.addPost} className="btn">
                             Submit
                         </button>

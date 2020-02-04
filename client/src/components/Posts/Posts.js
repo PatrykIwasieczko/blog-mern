@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 
 // Components
-import Spinner from "../UI/Spinner";
+import SinglePost from "./SinglePost";
 
 // Redux
 import { getPosts } from "../../redux/actions/postActions";
@@ -13,7 +13,6 @@ import { connect } from "react-redux";
 // Other libraries
 import moment from "moment";
 import "moment/locale/pl";
-import SinglePost from "./SinglePost";
 
 class Posts extends Component {
     componentDidMount() {
@@ -23,21 +22,16 @@ class Posts extends Component {
     render() {
         const { posts, loading } = this.props;
         moment.locale("pl");
-        let postSpinner = loading ? (
-            <>
-                <Spinner />
-                <Spinner />
-                <Spinner />
-                <Spinner />
-            </>
-        ) : null;
 
         return (
             <>
                 <div className="posts container">
-                    {postSpinner}
                     {posts.map(post => (
-                        <SinglePost key={post._id} post={post} />
+                        <SinglePost
+                            loading={loading}
+                            key={post._id}
+                            post={post}
+                        />
                     ))}
                 </div>
                 <div className="show-more-btn my-2">
@@ -57,7 +51,6 @@ Posts.propTypes = {
 
 const mapStateToProps = state => ({
     posts: state.post.posts,
-    isAuthenticated: state.auth.isAuthenticated,
     loading: state.post.loading
 });
 
