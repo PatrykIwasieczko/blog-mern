@@ -39,10 +39,10 @@ export const getPost = (postId, callback) => dispatch => {
             });
         })
         .then(() => {
-            dispatch(stopPostsLoading());
+            callback();
         })
         .then(() => {
-            callback();
+            dispatch(stopPostsLoading());
         })
         .catch(error => {
             dispatch(returnErrors(error.response.data, error.response.status));

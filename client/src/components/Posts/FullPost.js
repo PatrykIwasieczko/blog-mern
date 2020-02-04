@@ -45,15 +45,7 @@ class FullPost extends Component {
     };
 
     render() {
-        const {
-            title,
-            author,
-            date,
-            body,
-            _id,
-            image,
-            comments
-        } = this.props.post;
+        const { title, author, date, body, _id, comments } = this.props.post;
         moment.locale("pl");
 
         let fullPost = this.props.loading ? (
@@ -63,19 +55,8 @@ class FullPost extends Component {
                 <div className="post">
                     <div className="text">
                         <div className="headers">
-                            <h1
-                                onClick={() =>
-                                    this.encodeImage(image.data.data)
-                                }
-                            >
-                                {title}
-                            </h1>
-                            <p
-                                onClick={() => console.log(this.state)}
-                                className="lead"
-                            >
-                                Made by: {author}
-                            </p>
+                            <h1>{title}</h1>
+                            <p className="lead">Made by: {author}</p>
                             <p>{moment(date).fromNow()}</p>
                         </div>
                         <p className="body">{body}</p>
