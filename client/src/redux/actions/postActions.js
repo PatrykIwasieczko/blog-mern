@@ -28,7 +28,7 @@ export const getPosts = () => dispatch => {
         );
 };
 
-export const getPost = postId => dispatch => {
+export const getPost = (postId, callback) => dispatch => {
     dispatch(setPostsLoading());
     axios
         .get(`/api/posts/${postId}`)
@@ -41,13 +41,16 @@ export const getPost = postId => dispatch => {
         .then(() => {
             dispatch(stopPostsLoading());
         })
+        .then(() => {
+            callback();
+        })
         .catch(error => {
             dispatch(returnErrors(error.response.data, error.response.status));
             dispatch(stopPostsLoading());
         });
 };
 
-export const addPost = post => (dispatch, getState) => {
+export const addPost = (post, callback) => (dispatch, getState) => {
     axios
         .post("/api/posts", post, tokenConfig(getState))
         .then(res => {
@@ -55,6 +58,9 @@ export const addPost = post => (dispatch, getState) => {
                 type: ADD_POST,
                 payload: res.data
             });
+        })
+        .then(() => {
+            callback();
         })
 
         .catch(error => {

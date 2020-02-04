@@ -18,17 +18,31 @@ import "moment/locale/pl";
 class FullPost extends Component {
     state = {
         post: {
-            author: "",
-            title: "",
-            body: "",
-            _id: ""
+            imageUrl: ""
         }
     };
 
     componentDidMount() {
         const postId = this.props.match.params.id;
-        this.props.getPost(postId);
+
+        this.props.getPost(postId, () => {
+            return this.props.post.image
+                ? this.encodeImage(this.props.post.image.data.data)
+                : null;
+        });
     }
+
+    encodeImage = img => {
+        let base64String = btoa(
+            new Uint8Array(img).reduce(
+                (data, byte) => data + String.fromCharCode(byte),
+                ""
+            )
+        );
+        this.setState({
+            imageUrl: "data:image/jpeg;base64, " + base64String
+        });
+    };
 
     render() {
         const {
@@ -37,7 +51,7 @@ class FullPost extends Component {
             date,
             body,
             _id,
-
+            image,
             comments
         } = this.props.post;
         moment.locale("pl");
@@ -49,14 +63,25 @@ class FullPost extends Component {
                 <div className="post">
                     <div className="text">
                         <div className="headers">
-                            <h1>{title}</h1>
-                            <p className="lead">Made by: {author}</p>
+                            <h1
+                                onClick={() =>
+                                    this.encodeImage(image.data.data)
+                                }
+                            >
+                                {title}
+                            </h1>
+                            <p
+                                onClick={() => console.log(this.state)}
+                                className="lead"
+                            >
+                                Made by: {author}
+                            </p>
                             <p>{moment(date).fromNow()}</p>
                         </div>
                         <p className="body">{body}</p>
                     </div>
                     <div className="image">
-                        <img src="/images/food4.jpg" alt="" />
+                        <img src={this.state.imageUrl} alt="" />
                     </div>
                 </div>
                 <div className="">
