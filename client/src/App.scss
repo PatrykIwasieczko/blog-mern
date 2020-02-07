@@ -131,6 +131,46 @@ a {
             width: 100%;
         }
     }
+
+    .edit-post-icon {
+        cursor: pointer;
+    }
+
+    .edit-modal {
+        position: fixed;
+        z-index: 200;
+        border: 1px solid #eee;
+        box-shadow: 0 2px 2px #ccc;
+        background-color: $light-color;
+        padding: 10px;
+        text-align: center;
+        top: 10vh;
+        left: 15vw;
+        width: 70vw;
+        border-radius: 20px;
+
+        input,
+        select,
+        textarea {
+            border-radius: 20px;
+            outline: none;
+            padding: 1rem;
+        }
+        textarea {
+            width: 80%;
+        }
+        input {
+            height: 2rem;
+        }
+
+        p {
+            margin-top: 2rem;
+            margin-left: 1rem;
+        }
+        .btn {
+            margin: 1rem;
+        }
+    }
 }
 
 .welcome {

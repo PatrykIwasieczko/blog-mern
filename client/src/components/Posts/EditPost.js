@@ -26,16 +26,16 @@ class EditPost extends Component {
     render() {
         const { title, body, isOpen } = this.props;
         let modalMarkup = isOpen ? (
-            <div className="confirm-delete-modal">
-                <h1>Edit your post data</h1>
+            <div className="edit-modal">
+                <h2>Edit your post data</h2>
+                <h4 className="py-1">Post title</h4>
                 <input
                     defaultValue={title}
                     onChange={this.handleChange("title")}
                     type="text"
                     name="title"
-                    placeholder="Enter post title"
                 />
-                <h2 className="py-1">Post content</h2>
+                <h4 className="py-1">Post content</h4>
                 <textarea
                     defaultValue={body}
                     onChange={this.handleChange("body")}
@@ -45,8 +45,14 @@ class EditPost extends Component {
                     rows="10"
                 ></textarea>
 
-                <h2 className="py-1">Author</h2>
+                <h4 className="py-1">Author</h4>
                 <div>
+                    <button
+                        onClick={() => this.props.hideModal()}
+                        className="btn"
+                    >
+                        Back
+                    </button>
                     <select
                         onChange={this.handleChange("author")}
                         name="author"
