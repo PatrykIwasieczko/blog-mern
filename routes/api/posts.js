@@ -34,7 +34,7 @@ router.get("/:id", async (req, res) => {
 // @route   POST api/posts
 // @desc    Post the post
 // @access  Protected
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     // const { title, body, author } = req.body;
     // if (!title || !body || !author) {
     //     return res.status(400).json({ msg: "Please enter all fields" });
@@ -74,11 +74,6 @@ router.post("/", async (req, res) => {
     //     return res.status(400).json({ msg: err.message });
     // }
 });
-
-const image = (req, res, next) => {
-    res.set("Content-Type", req.post.image.contentType);
-    return res.send(req.post.image.data);
-};
 
 // @route   DELETE api/posts/id
 // @desc    Delete a post

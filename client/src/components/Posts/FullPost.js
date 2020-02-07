@@ -6,6 +6,8 @@ import PropTypes from "prop-types";
 import CommentForm from "./Comments/CommentForm";
 import Comments from "./Comments/Comments";
 import Spinner from "../UI/Spinner";
+import EditPost from "./EditPost";
+import Backdrop from "../Layout/Backdrop";
 
 // Redux
 import { getPost } from "../../redux/actions/postActions";
@@ -19,7 +21,9 @@ class FullPost extends Component {
     state = {
         post: {
             imageUrl: ""
-        }
+        },
+        isOpen: false,
+        deletingId: null
     };
 
     componentDidMount() {
@@ -31,6 +35,14 @@ class FullPost extends Component {
                 : null;
         });
     }
+
+    modalOpen = post => {
+        this.setState({ isOpen: true, deletingId: post._id });
+    };
+
+    hideModal = () => {
+        this.setState({ isOpen: false });
+    };
 
     encodeImage = img => {
         let base64String = btoa(
@@ -55,7 +67,29 @@ class FullPost extends Component {
                 <div className="post">
                     <div className="text">
                         <div className="headers">
-                            <h1>{title}</h1>
+                            <h1>
+                                {title}{" "}
+                                {this.props.isAuthenticated ? (
+                                    <i
+                                        onClick={this.modalOpen.bind(
+                                            this,
+                                            this.props.post
+                                        )}
+                                        className="fas fa-pen edit-post-icon"
+                                    ></i>
+                                ) : null}
+                                {this.state.isOpen ? (
+                                    <Backdrop show={this.state.isOpen} />
+                                ) : null}
+                                <EditPost
+                                    title={title}
+                                    author={author}
+                                    body={body}
+                                    hideModal={this.hideModal}
+                                    isOpen={this.state.isOpen}
+                                />
+                            </h1>
+
                             <p className="lead">Made by: {author}</p>
                             <p>{moment(date).fromNow()}</p>
                         </div>
@@ -78,11 +112,13 @@ class FullPost extends Component {
 
 FullPost.propTypes = {
     post: PropTypes.object.isRequired,
-    getPost: PropTypes.func.isRequired
+    getPost: PropTypes.func.isRequired,
+    isAuthenticated: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-    post: state.post.post
+    post: state.post.post,
+    isAuthenticated: state.auth.isAuthenticated
 });
 
 export default connect(mapStateToProps, { getPost })(FullPost);
