@@ -2,21 +2,6 @@ $primary-color: #17a2b8;
 $dark-color: #343a40;
 $light-color: #f4f4f4;
 
-// Set text color based on background
-@function set-text-color($color) {
-    @if (lightness($color) > 60) {
-        @return #333;
-    } @else {
-        @return #fff;
-    }
-}
-
-// Set background & text color
-@mixin set-background($color) {
-    background-color: $color;
-    color: set-text-color($color);
-}
-
 // Margin & Padding
 $spaceamounts: (1, 2, 3, 4, 5);
 
@@ -39,5 +24,43 @@ $spaceamounts: (1, 2, 3, 4, 5);
     // Vertical padding
     .py-#{$space} {
         padding: #{$space}rem 0;
+    }
+
+    // Horizontal margin
+    .mx-#{$space} {
+        margin: #{$space}rem 0;
+    }
+
+    // Horizontal padding
+    .px-#{$space} {
+        padding: #{$space}rem 0;
+    }
+
+    // All directions margin
+    .mt-#{$space} {
+        margin-top: #{$space}rem;
+    }
+    .mb-#{$space} {
+        margin-bottom: #{$space}rem;
+    }
+    .ml-#{$space} {
+        margin-left: #{$space}rem;
+    }
+    .mr-#{$space} {
+        margin-right: #{$space}rem;
+    }
+
+    // All directions padding
+    .pt-#{$space} {
+        padding-top: #{$space}rem;
+    }
+    .pb-#{$space} {
+        padding-bottom: #{$space}rem;
+    }
+    .pl-#{$space} {
+        padding-left: #{$space}rem;
+    }
+    .pr-#{$space} {
+        padding-right: #{$space}rem;
     }
 }

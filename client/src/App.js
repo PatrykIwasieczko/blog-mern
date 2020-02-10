@@ -18,6 +18,7 @@ import MobileNavbar from "./components/Layout/MobileNavbar";
 import About from "./components/Layout/About";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import AuthenticatedRoute from "./components/Middleware/AuthenticatedRoute";
 
 // Redux
 import store from "./store";
@@ -37,10 +38,16 @@ class App extends Component {
                     <Landing />
                     <Switch>
                         <Route exact path="/" component={HomePage} />
-                        <Route path="/addpost" component={AddPost} />
                         <Route path="/allposts" component={AllPosts} />
                         <Route path="/about" component={About} />
-                        <Route path="/register" component={Register} />
+                        <AuthenticatedRoute
+                            path="/addpost"
+                            component={AddPost}
+                        />
+                        <AuthenticatedRoute
+                            path="/register"
+                            component={Register}
+                        />
                         <Route path="/login" component={Login} />
                         <Route path="/:id" component={FullPost} />
                         <Redirect to="/" />
