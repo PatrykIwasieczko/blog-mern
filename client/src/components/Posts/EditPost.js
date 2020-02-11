@@ -1,6 +1,10 @@
 // React
 import React, { Component } from "react";
 
+// Redux
+import { connect } from "react-redux";
+import { editPost } from "../../redux/actions/postActions";
+
 class EditPost extends Component {
     state = {
         author: "First author",
@@ -16,10 +20,13 @@ class EditPost extends Component {
         });
     };
 
-    editPost = () => {
-        const newBody = this.state.body ? this.state.body : this.props.body;
-        const newTitle = this.state.title ? this.state.title : this.props.title;
-        console.log(newTitle, newBody);
+    handlePostEdit = () => {
+        const postId = this.props.postId;
+        const body = this.state.body ? this.state.body : this.props.body;
+        const title = this.state.title ? this.state.title : this.props.title;
+        const author = this.state.author;
+        const post = { body, title, author };
+        this.props.editPost(post, postId);
         this.props.hideModal();
     };
 
@@ -61,7 +68,7 @@ class EditPost extends Component {
                         <option value="Second author">Second author</option>
                         ))}
                     </select>
-                    <button onClick={this.editPost} className="btn">
+                    <button onClick={this.handlePostEdit} className="btn">
                         Submit
                     </button>
                 </div>
@@ -72,4 +79,8 @@ class EditPost extends Component {
     }
 }
 
-export default EditPost;
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { editPost })(EditPost);

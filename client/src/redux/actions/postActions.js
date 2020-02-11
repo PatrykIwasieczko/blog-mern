@@ -4,7 +4,8 @@ import {
     ADD_POST,
     DELETE_POST,
     POSTS_LOADING,
-    STOP_POSTS_LOADING
+    STOP_POSTS_LOADING,
+    EDIT_POST
 } from "./types";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
@@ -61,6 +62,21 @@ export const addPost = (post, callback) => (dispatch, getState) => {
         })
         .then(() => {
             callback();
+        })
+
+        .catch(error => {
+            dispatch(returnErrors(error.response.data, error.response.status));
+        });
+};
+
+export const editPost = (post, postId) => (dispatch, getState) => {
+    axios
+        .put(`/api/posts/${postId}`, post, tokenConfig(getState))
+        .then(res => {
+            dispatch({
+                type: EDIT_POST,
+                payload: res.data
+            });
         })
 
         .catch(error => {

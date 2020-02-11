@@ -82,6 +82,7 @@ class FullPost extends Component {
                                     <Backdrop show={this.state.isOpen} />
                                 ) : null}
                                 <EditPost
+                                    postId={this.props.match.params.id}
                                     title={title}
                                     author={author}
                                     body={body}
