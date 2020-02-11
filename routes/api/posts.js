@@ -12,10 +12,24 @@ const Comment = require("../../models/Comment.js");
 // @access  Public
 router.get("/", async (req, res) => {
     try {
+        const posts = await Post.find()
+            .sort({ date: -1 })
+            .limit(4);
+        return res.json(posts);
+    } catch (err) {
+        return res.status(400).json({ msg: err.message });
+    }
+});
+
+// @route   GET api/posts
+// @desc    Get all posts
+// @access  Public
+router.get("/all", async (req, res) => {
+    try {
         const posts = await Post.find().sort({ date: -1 });
         return res.json(posts);
     } catch (err) {
-        return res.status(500).json({ msg: "Something went wrong" });
+        return res.status(400).json({ msg: err.message });
     }
 });
 
@@ -27,7 +41,7 @@ router.get("/:id", async (req, res) => {
         const post = await Post.findById(req.params.id);
         return res.json(post);
     } catch (err) {
-        return res.status(404).json({ msg: "Post does not exist" });
+        return res.status(400).json({ msg: "Post does not exist" });
     }
 });
 
@@ -54,25 +68,33 @@ router.post("/", auth, async (req, res) => {
         }
         post.save((err, result) => {
             if (err) {
-                return res.status(400).json({
-                    error: "error"
-                });
+                return res.status(400).json({ msg: err.message });
             }
             res.json(result);
         });
     });
+});
 
-    // try {
-    //     const newPost = new Post({
-    //         title: title,
-    //         body: body,
-    //         author: author
-    //     });
-    //     await newPost.save();
-    //     return res.json(newPost);
-    // } catch (err) {
-    //     return res.status(400).json({ msg: err.message });
-    // }
+// @route   POST api/posts
+// @desc    Post the post
+// @access  Protected
+router.put("/:id", auth, async (req, res) => {
+    const { title, body, author } = req.body;
+    if (!title || !body || !author) {
+        return res.status(400).json({ msg: "Please enter all fields" });
+    }
+    const post = await Post.findByIdAndUpdate(req.params.id, {
+        title,
+        body,
+        author
+    });
+
+    post.save((err, result) => {
+        if (err) {
+            return res.status(400).json({ msg: err.message });
+        }
+        res.json(result);
+    });
 });
 
 // @route   DELETE api/posts/id
@@ -85,7 +107,7 @@ router.delete("/:id", auth, async (req, res) => {
 
         return res.json({ msg: "Post successfully removed" });
     } catch (err) {
-        return res.status(404).json({ msg: "Post does not exist" });
+        return res.status(400).json({ msg: "Post does not exist" });
     }
 });
 
@@ -93,11 +115,12 @@ router.delete("/:id", auth, async (req, res) => {
 // @desc    Post a comment
 // @access  Public
 router.post("/:id/comment", async (req, res) => {
+    const { user, body } = req.body;
     try {
         const post = await Post.findById(req.params.id);
         const comment = new Comment({
-            user: req.body.user,
-            body: req.body.body
+            user,
+            body
         });
 
         await comment.save();
@@ -106,7 +129,7 @@ router.post("/:id/comment", async (req, res) => {
         await post.save();
         return res.json(comment);
     } catch (err) {
-        return res.status(500).json({ msg: err.message });
+        return res.status(400).json({ msg: err.message });
     }
 });
 
